@@ -8,6 +8,7 @@ set runtimepath+=~/.vim/personal
 
 " Load all plugin bundles
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
 " Don't worry about vi compatibility
 set nocompatible
@@ -118,6 +119,20 @@ set cpoptions=ces$
 " Ack command
 let g:ackprg="/opt/local/bin/ack -H --nocolor --nogroup --column -a --ignore-dir=log "
 
+" NERDcommenter
+let NERDSpaceDelims = 1
+noremap <silent> <Leader>n :NERDTreeToggle<CR>
+
+" Command-t plugin
+nmap <silent> <Leader>f :CommandT<CR>
+
+" FuzzyFinder
+let g:fuf_previewHeight = 0
+let g:fuf_modesDisable = [ 'mrucmd', ]
+let g:fuf_mrufile_maxItem = 50
+
+nmap <silent> <Leader>b :FufBuffer<CR>
+nmap <silent> <C-X><C-F> :FufMruFile<CR>
 
 " GUI Settings
 " ==============================================================================
@@ -161,6 +176,9 @@ endfunction
 
 " autocmd BufWritePre *.py,*.js :call <SID>StripTrailingWhitespaces()
 
+" StripTrailingWhitespaces binding
+nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
+
 " delete buffer, keep window
 function! BufDelKeepWindow(kwbdStage)
  if(a:kwbdStage == 1)
@@ -181,7 +199,9 @@ function! BufDelKeepWindow(kwbdStage)
  endif
 endfunction
 
-" Key Bindings
+map <silent> <Leader>cc :call BufDelKeepWindow(1)<CR>
+
+" General Key Bindings
 " ==============================================================================
 
 " Maps to make handling windows a bit easier
@@ -199,7 +219,7 @@ noremap <silent> <Leader>cj :wincmd j<CR>:close<CR>
 noremap <silent> <Leader>ck :wincmd k<CR>:close<CR>
 noremap <silent> <Leader>ch :wincmd h<CR>:close<CR>
 noremap <silent> <Leader>cl :wincmd l<CR>:close<CR>
-noremap <silent> <Leader>cc :close<CR>
+" noremap <silent> <Leader>cc :close<CR>
 noremap <silent> <Leader>cw :cclose<CR>
 noremap <silent> <Leader>ml <C-W>L
 noremap <silent> <Leader>mk <C-W>K
@@ -210,17 +230,9 @@ noremap <silent> <C-8> <C-W>+
 noremap <silent> <C-9> <C-W>+
 noremap <silent> <C-0> <C-W>>
 
-map <silent> <Leader>c :call BufDelKeepWindow(1)<CR>
-
-" StripTrailingWhitespaces binding
-" nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
-
 " TextMate style indention commands
 nmap <D-[> <<
 nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
-
-" NERDTree
-noremap <silent> <Leader>n :NERDTreeToggle<CR>
 

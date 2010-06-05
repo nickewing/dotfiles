@@ -1,6 +1,6 @@
 require 'ftools'
 
-SOURCE_DIR = "#{ENV['HOME']}/.configs"
+SOURCE_DIR = "#{ENV['HOME']}/.dotfiles"
 SKIP_FILES = ['.', '..', '.git', 'Rakefile']
 
 def source_path(file)
