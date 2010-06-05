@@ -8,10 +8,14 @@ set runtimepath+=~/.vim/personal
 
 " Load all plugin bundles
 call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+" This only needs to happen when new plugs are added
+" call pathogen#helptags()
 
 " Don't worry about vi compatibility
 set nocompatible
+
+" Turn on syntax highlighting
+syntax enable
 
 " Turn on spell checking
 set spell
