@@ -1,0 +1,24 @@
+[user]
+	name = Nick Ewing
+	email = nick@nickewing.net
+[color]
+	ui = auto
+[alias]
+	c = commit
+	co = checkout
+	s = status
+	d = diff
+	a = add
+	b = branch
+	cp = cherry-pick
+	m = mergetool
+  f = fetch
+  pl = pull
+  ps = push
+[merge]
+	tool = opendiff
+[push]
+	mode = current
+	default = current
+[core]
+	excludesfile = /Users/nick/.gitignore
