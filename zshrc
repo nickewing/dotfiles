@@ -71,9 +71,66 @@ bindkey "^N" history-incremental-search-forward
 autoload -U compinit
 compinit -C
 
-zstyle ':completion:*:default' menu select=1
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# zstyle ':completion:*:default' menu select=1
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# zstyle ':completion:*:functions' ignored-patterns '_*'
+zstyle ':completion:*' menu select=1
+
+# Colors on completion me-ow
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+
+# Completion caching
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' cache-path ~/.zsh/cache/$HOST
+
+# Completion Options
+zstyle ':completion:*:match:*' original only
+zstyle ':completion::prefix-1:*' completer _complete
+zstyle ':completion:predict:*' completer _complete
+zstyle ':completion:incremental:*' completer _complete _correct
+zstyle ':completion:*' completer _complete _prefix _correct _prefix _match _approximate
+
+# Ignore completions for commands that we dont have
+zstyle ':completion:*:functions' ignored-patterns '_*'
+
+# Dont complete backups as executables
+zstyle ':completion:*:complete:-command-::commands' ignored-patterns '*\~'
+
+# Path Expansion
+zstyle ':completion:*' expand 'yes'
+zstyle ':completion:*' squeeze-shlashes 'yes'
+zstyle ':completion::complete:*' '\\'
+
+# Allow forced showing'
+zstyle '*' single-ignored show
+
+# Case insensitivity, partial matching, substitution
+zstyle ':completion:*' matcher-list 'm:{A-Z}={a-z}' 'm:{a-z}={A-Z}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+
+# Group matches and Describe
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d --\e[0m'
+zstyle ':completion:*:messages' format $'\e[01;35m -- %d --\e[0m'
+zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
+
+# Prevent re-suggestion
+zstyle ':completion:*:rm:*' ignore-line yes
+zstyle ':completion:*:scp:*' ignore-line yes
+zstyle ':completion:*:ls:*' ignore-line yes
+
+# Menu for KILL
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*' force-list always
+
+# Kill Menu Extension!
+zstyle ':completion:*:processes' command 'ps -U $(whoami) | sed "/ps/d"'
+zstyle ':completion:*:processes' insert-ids menu yes select 
 
 # Show Current Dir as xterm Title
 ################################################################################

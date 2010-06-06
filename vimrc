@@ -1,4 +1,4 @@
-" General Settings
+" Setup
 " ==============================================================================
 
 " Add to search path
@@ -11,14 +11,14 @@ call pathogen#runtime_append_all_bundles()
 " This only needs to happen when new plugs are added
 " call pathogen#helptags()
 
+" General Settings
+" ==============================================================================
+
 " Don't worry about vi compatibility
 set nocompatible
 
 " Turn on syntax highlighting
 syntax enable
-
-" Turn on spell checking
-set spell
 
 " Allow filetype specific options
 filetype on
@@ -30,15 +30,6 @@ set history=300
 
 " Auto read outside changes
 set autoread
-
-" Indention options
-set autoindent
-set smartindent
-
-" 2 character soft tabs
-set expandtab
-set tabstop=2
-set shiftwidth=2
 
 " Highlight current line
 " set cursorline
@@ -53,9 +44,6 @@ set ignorecase
 set smartcase
 " Highlight all search matches at once
 set hlsearch
-
-" Show matching parens
-set showmatch
 
 " Show status bar
 set ruler
@@ -90,11 +78,9 @@ set fillchars=""
 
 " Disable sounds on errors
 set noerrorbells
+set visualbell t_vb=
 " Disable visual bells
 " set novisualbell
-
-" Disable line wrapping
-set nowrap
 
 " When the page starts to scroll, keep the cursor 8 lines from the top and 8
 " lines from the bottom
@@ -112,10 +98,33 @@ set wildmenu
 " Leader key
 let mapleader = ","
 
+" Editing Settings
+" ==============================================================================
+
+" Show matching parens
+set showmatch
+
+" Turn on spell checking
+set spell
+
+" Disable line wrapping
+set nowrap
+
+" Indention options
+set autoindent
+set smartindent
+
+" 2 character soft tabs
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+" Hard wrap
+set textwidth=80
+
 " Make the 'cw' and like commands put a $ at the end instead of just deleting
 " the text and replacing it
 set cpoptions=ces$
-
 
 " Plug-in Settings
 " ==============================================================================
@@ -187,26 +196,27 @@ endfunction
 nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
 
 " delete buffer, keep window
-function! BufDelKeepWindow(kwbdStage)
- if(a:kwbdStage == 1)
-   let g:kwbdBufNum = bufnr("%")
-   let g:kwbdWinNum = winnr()
-   windo call BufDelKeepWindow(2)
-   execute "bd " . g:kwbdBufNum
-   execute "normal " . g:kwbdWinNum . ""
- else
-   if(bufnr("%") == g:kwbdBufNum)
-     let prevbufvar = bufnr("#")
-     if(prevbufvar > 0 && buflisted(prevbufvar) && prevbufvar != g:kwbdBufNum)
-       b #
-     else
-       bn
-     endif
-   endif
- endif
+function! BufDelKeepWindow()
+  let bufNum = bufnr("%")
+  if !getbufvar("%", "&confirm") && getbufvar("%", "&modified")
+    let confirmed = confirm("Buffer modified. Continue?", "&Yes\n&No", 2)
+    if confirmed != 1
+      return
+    end
+  end
+
+  let winNum = winnr()
+  let prevBufNum = bufnr("#")
+  if(prevBufNum > 0 && buflisted(prevBufNum) && prevBufNum != bufNum)
+    b! #
+  else
+    bn!
+  endif
+  execute "bd! " . bufNum
+  execute "normal " . winNum
 endfunction
 
-map <silent> <Leader>cc :call BufDelKeepWindow(1)<CR>
+map <silent> <Leader>cc :call BufDelKeepWindow()<CR>
 
 " General Key Bindings
 " ==============================================================================
