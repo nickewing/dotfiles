@@ -1,8 +1,9 @@
 # Term Settings
 ################################################################################
 
-setopt hist_reduce_blanks append_history #share_history
-setopt inc_append_history hist_ignore_dups
+setopt inc_append_history
+setopt hist_ignore_dups hist_ignore_all_dups hist_reduce_blanks
+
 setopt correct correct_all cdablevars auto_list rec_exact nomatch
 setopt long_list_jobs auto_resume 
 setopt glob_dots extended_glob rc_quotes mail_warning
@@ -10,12 +11,11 @@ setopt auto_cd auto_pushd pushd_minus pushd_to_home pushd_silent
 
 unsetopt bg_nice auto_param_slash beep notify clobber
 
-bindkey  history-incremental-search-backward
-bindkey -M vicmd '^r' history-incremental-search-backward
-
 # Exports
 ################################################################################
 setopt   ALL_EXPORT
+
+fpath=(/opt/local/share/zsh/4.3.10/functions $fpath)
 
 # mysql
 PATH="/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:$PATH"
@@ -24,7 +24,7 @@ PATH="/opt/local/lib/postgresql84/bin/:$PATH"
 # general
 PATH="$HOME/bin:$HOME/bin/bin:/usr/local/bin:/usr/local/sbin:$PATH"							
 # erlang tools
-PATH="/Users/nick/Work/Coding/Erlang/elib1/bin:$PATH"
+PATH="$HOME/Work/Coding/Erlang/elib1/bin:$PATH"
 
 
 # Make zsh root dir if it doesn't exist
@@ -34,26 +34,13 @@ if [ ! -e $ZSH_ROOT ]; then
 fi
 
 HISTFILE="$ZSH_ROOT/history"
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=5000
+SAVEHIST=5000
 
 HOSTNAME=`hostname`
 PAGER='less'
-EDITOR='vim'
-
-# Colors
-autoload colors zsh/terminfo
-
-if [[ "$terminfo[colors]" -ge 8 ]]; then
-  colors
-fi
-for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-  eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-  eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
-    (( count = $count + 1 ))
-done
-PR_NO_COLOR="%{$terminfo[sgr0]%}"
-
+# Emulate emacs bindings
+EDITOR='emacs'
 
 #TZ="America/New_York"
 LC_ALL='en_US.UTF-8'
@@ -72,6 +59,22 @@ fi
 
 unsetopt ALL_EXPORT
 
+## Bindings
+################################################################################
+
+bindkey "^P" history-incremental-search-backward
+bindkey "^N" history-incremental-search-forward
+
+## Completions
+################################################################################
+
+autoload -U compinit
+compinit -C
+
+zstyle ':completion:*:default' menu select=1
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
 # Show Current Dir as xterm Title
 ################################################################################
 
@@ -85,12 +88,36 @@ chpwd() {
   esac
 }
 
+# Prompts
+################################################################################
+
+autoload -Uz vcs_info
+autoload -U colors && colors
+
+PROMPT="%{$fg[cyan]%}%m:%2c%{$reset_color%} %(!.#.$) "
+
+typeset -ga precmd_functions
+ 
+zstyle ':vcs_info:*' enable git svn
+
+zstyle ':vcs_info:*:*' actionformats ' %s[%b,%r|%a]'
+zstyle ':vcs_info:*:*' formats ' %s[%b,%r]'
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%r'
+
+function _rprompt() {
+  vcs_info
+  
+  RPROMPT="%{$fg[green]%} ${vcs_info_msg_0_} %{$fg[cyan]%}#%h%{$reset_color%}"
+}
+
+precmd_functions+=_rprompt
+
 # Aliases
 ################################################################################
 
-if [ `uname` = "Darwin" ]; then # OS X only aliases
+if [ `uname` = "Darwin" ]; then # OS X specific 
 	alias ls='ls -Gl '
-else # Non OS X aliases
+else # Non OS X
 	alias ls='ls -l --color=auto'
 fi
 
@@ -110,37 +137,3 @@ alias ip='ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2'
 
 alias e='mvim --remote'
 
-# Prompts
-################################################################################
-
-PROMPT="$PR_CYAN%m:%2c$PR_NO_COLOR %(!.#.$) "
-
-local -A git_res
-git_res=`git branch -a --no-color 2> /dev/null`
-if [ $? = "0" ]; then
-    git_res=`echo $git_res | grep '^*' | tr -d '\* '`
-    RPROMPT="%Sgit [$git_res]%s"
-fi
-
-typeset -ga precmd_functions
-
-function _rprompt() {
-    REP=
-    
-    # git
-    local -A git_res
-    git_res=`git branch -a --no-color 2> /dev/null`
-    if [ $? = "0" ]; then
-        git_res=`echo $git_res | grep '^*' | tr -d '\* '`
-        REP="git[$git_res]"
-    fi
-
-    # svn
-    if [ -d .svn ]; then
-        REP="svn"
-    fi
-    
-    RPROMPT="$PR_GREEN $REP $PR_CYAN#%h$PR_NO_COLOR"
-}
-
-precmd_functions+=_rprompt

@@ -1,7 +1,11 @@
 require 'ftools'
 
 SOURCE_DIR = "#{ENV['HOME']}/.dotfiles"
-SKIP_FILES = ['.', '..', '.git', 'Rakefile']
+SKIP_FILES = ['Rakefile']
+
+def skip?(f)
+  f[0..0] == '.' || SKIP_FILES.include?(f)
+end
 
 def source_path(file)
   "#{SOURCE_DIR}/#{file}"
@@ -14,34 +18,38 @@ end
 desc 'Create links from dotfiles to home directory'
 task :link do
   Dir.foreach(SOURCE_DIR) do |f|
-    next if SKIP_FILES.include? f
+    next if skip? f
 
     path = dot_path(f)
-
-    if File.exists? path
+    next if File.symlink?(path)
+    
+    if File.exists?(path) 
       puts "#{f} already exists.  Creating backup..."
-      File.move(path, "#{path}.backup")
+      backup = "#{path}.backup"
+      if File.exists? backup
+        puts "\tBackup aleady exists."
+      else
+        File.move(path, backup)
+      end
     end
 
-    puts "Linking #{f} to #{path}..."
-    puts File.symlink(source_path(f), path)
+    puts "Linking #{f} to #{path}"
+    File.symlink(source_path(f), path)
   end
 end
 
 desc 'Delete links to dotfiles in home directory'
 task :unlink do
   Dir.foreach(SOURCE_DIR) do |f|
-    next if SKIP_FILES.include? f
+    next if skip? f
 
     path = dot_path(f)
 
     if File.symlink? path
-      puts "Unlinking #{path}..."
-      puts File.unlink(path)
+      puts "Unlinking #{path}"
+      File.unlink(path)
     elsif File.exists? path
       puts "#{path} is not a symlink... skipping..."
-    else
-      puts "#{path} does not exist."
     end
   end
 end

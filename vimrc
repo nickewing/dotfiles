@@ -125,6 +125,9 @@ let g:ackprg="/opt/local/bin/ack -H --nocolor --nogroup --column -a --ignore-dir
 
 " NERDcommenter
 let NERDSpaceDelims = 1
+let NERDBlockComIgnoreEmpty = 1
+
+" NERDTree
 noremap <silent> <Leader>n :NERDTreeToggle<CR>
 
 " Command-t plugin
