@@ -15,6 +15,7 @@
   f = fetch
   pl = pull
   ps = push
+  sm = submodule
 [merge]
 	tool = opendiff
 [push]
