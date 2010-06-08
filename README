@@ -1,0 +1,6 @@
+Dotfiles
+========
+
+My dotfiles for various programs.  Each file (except the files already preceded
+by a '.') represent a file at ~/.{file}
+
