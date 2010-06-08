@@ -94,6 +94,8 @@ set noswapfile
 " Show completions menu
 set wildmenu
 " set wildmode=list:longest
+set wildignore+=*.beam,*.o,.git,.svn,*.obj,*.jpg,*.jpeg,*.png,*.gif,*.swf
+set wildignore+=.DS_Store,*.amf,*.tiff,*.tif,*.ttf
 
 " Leader key
 let mapleader = ","
@@ -130,21 +132,45 @@ set cpoptions=ces$
 " ==============================================================================
 
 " Ack command
+" ===========
+
 let g:ackprg="/opt/local/bin/ack -H --nocolor --nogroup --column -a --ignore-dir=log "
 
+" XPTemplate
+" ==========
+
+" Disable tab highlight
+let g:xptemplate_highlight = ''
+
 " NERDcommenter
+" =============
+
+" Add a space before comments
 let NERDSpaceDelims = 1
-let NERDBlockComIgnoreEmpty = 1
+" Comment all the lines selected
+let NERDBlockComIgnoreEmpty = 0
 
 " NERDTree
+" ========
+
 noremap <silent> <Leader>n :NERDTreeToggle<CR>
 
 " Command-t plugin
+" ================
+
+" Set the maximum height of completion window
+let g:CommandTMaxHeight = 10
+
 nmap <silent> <Leader>f :CommandT<CR>
 
 " FuzzyFinder
+" ===========
+
+" Disable preview window
 let g:fuf_previewHeight = 0
+" Disable recent command menu
 let g:fuf_modesDisable = [ 'mrucmd', ]
+" Set maximum recent files
 let g:fuf_mrufile_maxItem = 50
 
 nmap <silent> <Leader>b :FufBuffer<CR>
@@ -246,6 +272,9 @@ noremap <silent> <C-7> <C-W>>
 noremap <silent> <C-8> <C-W>+
 noremap <silent> <C-9> <C-W>+
 noremap <silent> <C-0> <C-W>>
+
+" Clear search on escape
+nnoremap <esc> :noh<return><esc>
 
 " TextMate style indention commands
 nmap <D-[> <<

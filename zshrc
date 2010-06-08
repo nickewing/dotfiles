@@ -132,6 +132,26 @@ zstyle ':completion:*:kill:*' force-list always
 zstyle ':completion:*:processes' command 'ps -U $(whoami) | sed "/ps/d"'
 zstyle ':completion:*:processes' insert-ids menu yes select 
 
+compctl -z fg
+compctl -j kill
+compctl -j disown
+compctl -u chown
+compctl -u su
+compctl -c sudo
+compctl -c which
+compctl -c type
+compctl -c hash
+compctl -c unhash
+compctl -o setopt
+compctl -o unsetopt
+compctl -a alias
+compctl -a unalias
+compctl -A shift
+compctl -v export
+compctl -v unset
+compctl -v echo
+compctl -b bindkey
+
 # Show Current Dir as xterm Title
 ################################################################################
 
@@ -173,9 +193,9 @@ precmd_functions+=_rprompt
 ################################################################################
 
 if [ `uname` = "Darwin" ]; then # OS X specific 
-	alias ls='ls -Gl '
+	alias ls='ls -Ghl '
 else # Non OS X
-	alias ls='ls -l --color=auto'
+	alias ls='ls -lh --color=auto'
 fi
 
 alias g='git'
@@ -193,4 +213,10 @@ alias guntar='tar -zxvf'
 alias ip='ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2'
 
 alias e='mvim --remote'
+
+alias du='du -sh'
+
+alias -g ..='..'
+alias -g ...='../..'
+alias -g ....='../../..'
 
