@@ -1,0 +1,19 @@
+require 'redgreen/autotest' unless ENV['RSPEC']
+require 'autotest/growl'
+
+# Must be last require 
+require 'autotest/fsevent' 
+
+exceptions = %w{
+	.hg .git .svn .txt
+	.project stories/ tmtags Rakefile Capfile README 
+	config/ svn-commit .DS_Store test/data tags
+}
+
+Autotest::Growl::clear_terminal = true
+Autotest::Growl::hide_label = false
+
+Autotest.add_hook :initialize do |at|
+	exceptions.each {|exception|at.add_exception(exception)}
+end
+

@@ -1,7 +1,7 @@
 require 'ftools'
 
 SOURCE_DIR = "#{ENV['HOME']}/.dotfiles"
-SKIP_FILES = ['Rakefile']
+SKIP_FILES = ['Rakefile', 'README']
 
 def skip?(f)
   f[0..0] == '.' || SKIP_FILES.include?(f)

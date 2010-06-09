@@ -1,6 +1,9 @@
 require 'rubygems'
+require 'pp'
 require 'wirble'
+require 'looksee/shortcuts'
 require 'bond'
+require 'interactive_editor'
 
 # Better autocompletion
 # http://tagaholic.me/bond/
@@ -48,7 +51,7 @@ IRB.conf[:PROMPT][:CUSTOM] = {
 }
 
 # Set default prompt
-IRB.conf[:PROMPT_MODE]  = :CUSTOM
+# IRB.conf[:PROMPT_MODE]  = :CUSTOM
 IRB.conf[:AUTO_INDENT]  = true
 IRB.conf[:USE_READLINE] = true
 

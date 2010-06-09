@@ -124,9 +124,18 @@ set shiftwidth=2
 " Hard wrap
 set textwidth=80
 
+" Set format options to auto wrap text and understand numbering
+set formatoptions=tcqn
+
 " Make the 'cw' and like commands put a $ at the end instead of just deleting
 " the text and replacing it
 set cpoptions=ces$
+
+" When editing a file, always jump to the last known cursor position.
+autocmd BufReadPost *
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 
 " Plug-in Settings
 " ==============================================================================
@@ -134,7 +143,7 @@ set cpoptions=ces$
 " Ack command
 " ===========
 
-let g:ackprg="/opt/local/bin/ack -H --nocolor --nogroup --column -a --ignore-dir=log "
+let g:ackprg = "/opt/local/bin/ack -H --nocolor --nogroup --column -a "
 
 " XPTemplate
 " ==========
@@ -188,7 +197,7 @@ if has("gui_running")
   " Color scheme
   colorscheme ir_black
   " Set transparency
-  set transparency=6
+  set transparency=3
   " Set font
   set guifont=DejaVu\ Sans\ Mono:h11
   set guioptions=ce 
@@ -272,6 +281,9 @@ noremap <silent> <C-7> <C-W>>
 noremap <silent> <C-8> <C-W>+
 noremap <silent> <C-9> <C-W>+
 noremap <silent> <C-0> <C-W>>
+
+" Remap Q to format instead of Ex mode
+map Q gq
 
 " Clear search on escape
 nnoremap <esc> :noh<return><esc>
