@@ -285,8 +285,8 @@ noremap <silent> <C-0> <C-W>>
 " Remap Q to format instead of Ex mode
 map Q gq
 
-" Clear search on escape
-nnoremap <esc> :noh<return><esc>
+" Clear search
+nnoremap <CR> :noh<CR><CR>
 
 " TextMate style indention commands
 nmap <D-[> <<
