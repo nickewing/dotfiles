@@ -9,7 +9,7 @@ set runtimepath+=~/.vim/personal
 " Load all plugin bundles
 call pathogen#runtime_append_all_bundles()
 " This only needs to happen when new plugs are added
-" call pathogen#helptags()
+call pathogen#helptags()
 
 " General Settings
 " ==============================================================================
@@ -143,7 +143,7 @@ autocmd BufReadPost *
 " Ack command
 " ===========
 
-let g:ackprg = "/opt/local/bin/ack -H --nocolor --nogroup --column -a "
+" let g:ackprg = "/opt/local/bin/ack -H --nocolor --nogroup --column "
 
 " XPTemplate
 " ==========
@@ -185,6 +185,20 @@ let g:fuf_mrufile_maxItem = 50
 nmap <silent> <Leader>b :FufBuffer<CR>
 nmap <silent> <C-X><C-F> :FufMruFile<CR>
 
+" Taglist
+" =======
+
+" Make list smaller
+let Tlist_Compact_Format = 1
+" Don't highlight current tag while moving through file
+let Tlist_Auto_Highlight_Tag = 0
+" Hide holding bars
+let Tlist_Enable_Fold_Column = 0
+" Only show list for current buffer
+let Tlist_Show_One_File = 1
+
+nmap <silent> <Leader>i :TlistToggle<CR>
+
 " GUI Settings
 " ==============================================================================
 
@@ -195,7 +209,7 @@ if has("gui_running")
   set fuoptions=maxvert,maxhorz
   au GUIEnter * set fullscreen
   " Color scheme
-  colorscheme ir_black
+  colorscheme railscasts
   " Set transparency
   set transparency=3
   " Set font
@@ -253,6 +267,25 @@ endfunction
 
 map <silent> <Leader>cc :call BufDelKeepWindow()<CR>
 
+function! SetTabNameToCWD()
+  let path = split(getcwd(), "/")
+  if len(path) > 0
+    let name = path[-1]
+  else
+    let name = '/'
+  end
+  execute "TName '" . name . "'"
+endfunction
+command! -n=0 -bar SetTabNameToCWD :call SetTabNameToCWD()
+
+function! DirTab(dir)
+  let d = a:dir
+  tabnew
+  execute "lcd " . d
+  call SetTabNameToCWD()
+endfunction
+command! -n=1 -complete=dir -bar DirTab :call DirTab('<args>')
+
 " General Key Bindings
 " ==============================================================================
 
@@ -286,7 +319,7 @@ noremap <silent> <C-0> <C-W>>
 map Q gq
 
 " Clear search
-nnoremap <CR> :noh<CR><CR>
+nnoremap <silent><CR> :noh<CR><CR>
 
 " TextMate style indention commands
 nmap <D-[> <<

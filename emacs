@@ -10,8 +10,8 @@
   ;; hide toolbar
   (tool-bar-mode 0)
   ;; transparent background
-  (set-frame-parameter (selected-frame) 'alpha '(85 50))
-  (add-to-list 'default-frame-alist '(alpha 85 50))
+  (set-frame-parameter (selected-frame) 'alpha '(95 95))
+  (add-to-list 'default-frame-alist '(alpha 95 95))
   ;; setup color theme
   (require 'color-theme)
   (color-theme-initialize)

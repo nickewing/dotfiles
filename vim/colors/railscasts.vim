@@ -4,6 +4,8 @@
 " Maintainer:  Josh O'Rourke <jorourke23@gmail.com>
 " License:     public domain
 "
+" Modified:    Nick Ewing, 2010
+"
 " A GUI Only port of the RailsCasts TextMate theme [1] to Vim.
 " Some parts of this theme were borrowed from the well-documented Lucius theme [2].
 "
@@ -31,7 +33,7 @@ hi Cursor                    guibg=#FFFFFF
 hi CursorLine                guibg=#333435
 hi Search                    guibg=#5A647E
 hi Visual                    guibg=#5A647E
-hi LineNr                    guibg=#333435 guifg=#777777 gui=NONE
+hi LineNr                    guifg=#404040 gui=NONE
 hi StatusLine                guibg=#414243 gui=NONE gui=italic
 hi StatusLineNC              guibg=#414243 gui=NONE
 hi VertSplit                 guibg=#414243 gui=NONE
