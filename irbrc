@@ -41,19 +41,23 @@ Wirble::Colorize.colors = Wirble::Colorize.colors.merge({
 })
 Wirble.colorize
 
-# Create a custom prompt
-IRB.conf[:PROMPT][:CUSTOM] = {
-    :PROMPT_N => "> ",
-    :PROMPT_I => "> ",
-    :PROMPT_S => nil,
-    :PROMPT_C => "> ",
-    :RETURN   => ""
-}
+if IRB
+  # Create a custom prompt
+  if IRB.conf and IRB.conf[:PROMPT]
+    IRB.conf[:PROMPT][:CUSTOM] = {
+      :PROMPT_N => "> ",
+      :PROMPT_I => "> ",
+      :PROMPT_S => nil,
+      :PROMPT_C => "> ",
+      :RETURN   => ""
+    }
+  end
 
-# Set default prompt
-# IRB.conf[:PROMPT_MODE]  = :CUSTOM
-IRB.conf[:AUTO_INDENT]  = true
-IRB.conf[:USE_READLINE] = true
+  # Set default prompt
+  # IRB.conf[:PROMPT_MODE]  = :CUSTOM
+  IRB.conf[:AUTO_INDENT]  = true
+  IRB.conf[:USE_READLINE] = true
+end
 
 # Log to terminal when in Rails console
 if ENV.include?('RAILS_ENV') && !Object.const_defined?('RAILS_DEFAULT_LOGGER')

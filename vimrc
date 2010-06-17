@@ -222,6 +222,9 @@ if has("gui_running")
   set mousehide
   " Possibly improve terminal evaluation?
   set guipty
+  " Set some default sizes
+  set columns=100
+  set lines=60
 endif
 
 " Useful Functions
@@ -314,6 +317,12 @@ noremap <silent> <C-7> <C-W>>
 noremap <silent> <C-8> <C-W>+
 noremap <silent> <C-9> <C-W>+
 noremap <silent> <C-0> <C-W>>
+
+" Resize frame
+map <silent> <C-H> :set columns-=10<CR>
+map <silent> <C-L> :set columns+=10<CR>
+map <silent> <C-K> :set lines-=10<CR>
+map <silent> <C-J> :set lines+=10<CR>
 
 " Remap Q to format instead of Ex mode
 map Q gq

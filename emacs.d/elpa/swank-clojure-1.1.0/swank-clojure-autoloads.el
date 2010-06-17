@@ -4,28 +4,28 @@
 
 
 ;;;### (autoloads (swank-clojure-project swank-clojure-cmd swank-clojure-slime-mode-hook
-;;;;;;  swank-clojure-init) "swank-clojure" "swank-clojure.el" (19402
-;;;;;;  22176))
+;;;;;;  swank-clojure-init) "swank-clojure" "swank-clojure.el" (19475
+;;;;;;  7868))
 ;;; Generated autoloads from swank-clojure.el
 
-(autoload (quote swank-clojure-init) "swank-clojure" "\
+(autoload 'swank-clojure-init "swank-clojure" "\
 Not documented
 
 \(fn FILE ENCODING)" nil nil)
 
-(autoload (quote swank-clojure-slime-mode-hook) "swank-clojure" "\
+(autoload 'swank-clojure-slime-mode-hook "swank-clojure" "\
 Not documented
 
 \(fn)" nil nil)
 
-(autoload (quote swank-clojure-cmd) "swank-clojure" "\
+(autoload 'swank-clojure-cmd "swank-clojure" "\
 Create the command to start clojure according to current settings.
 
 \(fn)" nil nil)
 
-(defadvice slime-read-interactive-args (before add-clojure) (require (quote assoc)) (aput (quote slime-lisp-implementations) (quote clojure) (list (swank-clojure-cmd) :init (quote swank-clojure-init))))
+(defadvice slime-read-interactive-args (before add-clojure) (require 'assoc) (aput 'slime-lisp-implementations 'clojure (list (swank-clojure-cmd) :init 'swank-clojure-init)))
 
-(autoload (quote swank-clojure-project) "swank-clojure" "\
+(autoload 'swank-clojure-project "swank-clojure" "\
 Setup classpath for a clojure project and starts a new SLIME session.
   Kills existing SLIME session, if any.
 
@@ -33,13 +33,15 @@ Setup classpath for a clojure project and starts a new SLIME session.
 
 ;;;***
 
-;;;### (autoloads nil nil ("swank-clojure-pkg.el") (19402 22176 486663))
+;;;### (autoloads nil nil ("swank-clojure-pkg.el") (19475 7868 472320))
 
 ;;;***
 
+(provide 'swank-clojure-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
+;; coding: utf-8
 ;; End:
 ;;; swank-clojure-autoloads.el ends here

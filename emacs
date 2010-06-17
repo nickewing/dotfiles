@@ -2,7 +2,10 @@
 ;; Setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'load-path "~/.emacs.d/vendor")
+(setq nee-conf-dir "~/.emacs.d/")
+(setq nee-vendor (concat nee-conf-dir "vendor/"))
+
+(add-to-list 'load-path nee-vendor)
 
 ;; GUI
 
@@ -12,10 +15,13 @@
   ;; transparent background
   (set-frame-parameter (selected-frame) 'alpha '(95 95))
   (add-to-list 'default-frame-alist '(alpha 95 95))
+  ;; window-size
+  (add-to-list 'default-frame-alist '(width . 100))
+  (add-to-list 'default-frame-alist '(height . 60))
   ;; setup color theme
   (require 'color-theme)
   (color-theme-initialize)
-  (load-file "~/.emacs.d/vendor/themes/color-theme-cobalt.el")
+  (load-file (concat nee-vendor "themes/color-theme-cobalt.el"))
   (color-theme-cobalt))
 
 (if window-system
@@ -23,60 +29,60 @@
 
 ;; Package manager
 
-(when (load (expand-file-name "~/.emacs.d/elpa/package.el"))
+(when (load (expand-file-name (concat nee-conf-dir "elpa/package.el")))
   (package-initialize))
 
 ;; CEDET
 
-(load-file "~/.emacs.d/vendor/cedet-1.0pre7/common/cedet.el")
+(load-file (concat nee-vendor "cedet-1.0pre7/common/cedet.el"))
 ;;(global-ede-mode 1)                 ; Enable the Project management system
 ;;(semantic-load-enable-code-helpers) ; Enable prototype help and smart completion
 ;;(global-srecode-minor-mode 1)       ; Enable template insertion menu
 
 ;; ECB
 
-(add-to-list 'load-path "~/.emacs.d/vendor/ecb-2.40")
+(add-to-list 'load-path (concat nee-vendor "ecb-2.40"))
 (require 'ecb)
 
 (custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(ecb-layout-name "custom1")
+ '(ecb-layout-window-sizes (quote (("custom1" (0.2345679012345679 . 0.7666666666666667) (0.2345679012345679 . 0.2)))))
  '(ecb-options-version "2.40")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
- '(ecb-layout-window-sizes (quote (("custom1"
-                                    (0.2345679012345679 . 0.7666666666666667)
-                                    (0.2345679012345679 . 0.2)))))
  '(ecb-show-sources-in-directories-buffer (quote ("left7" "left13" "left14" "left15" "custom1")))
  '(ecb-source-path (quote (("~/" "Home"))))
- '(ecb-layout-name "custom1")
  '(ecb-tip-of-the-day nil))
 
 ;; nXHTML
 
-(load "~/.emacs.d/vendor/nxhtml/autostart.el")
+(load (concat nee-vendor "nxhtml/autostart.el"))
 
 ;; MuMaMo-Mode for rhtml files
-(add-to-list 'load-path "~/.emacs.d/vendor/nxhtml/util")
+(add-to-list 'load-path (concat nee-vendor "nxhtml/util"))
 (require 'mumamo-fun)
 (setq mumamo-chunk-coloring 'submode-colored)
 (add-to-list 'auto-mode-alist '("\\.rhtml\\'" . eruby-html-mumamo))
 (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . eruby-html-mumamo))
 
-;; (defun run-coding-hook ()
-;;   "Enable things that are convenient across all coding buffers."
-;;   nil)
-
-
 ;; YASnippets
 
-(add-to-list 'load-path "~/.emacs.d/vendor/yasnippet")
+(add-to-list 'load-path (concat nee-vendor "yasnippet"))
 (require 'yasnippet)
 (yas/initialize)
-(yas/load-directory "~/.emacs.d/snippets")
+(yas/load-directory (concat nee-conf-dir "snippets"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq default-directory "~/Work")
+
+(setq custom-file "~/.emacs-custom.el")
+(load custom-file)
 
 ;; Tab size
 (setq nee-tab-size 2)
@@ -93,6 +99,12 @@
         js2-mode        feature-mode
         css-mode))
 
+;; Redo Mode - Enable redo function
+(require 'redo)
+
+;; Delete Selection Mode - delete or replace selections
+(delete-selection-mode t)
+
 ;; Visual Line Mode
 (when (> emacs-major-version 22)
   (visual-line-mode t))
@@ -100,9 +112,12 @@
 ;; Highlight current line
 (global-hl-line-mode t)
 
-;; ;; TextMate mode
+;; TextMate mode
 (require 'textmate)
 (textmate-mode)
+
+;; Column Number Mode - show column number in modeline
+(column-number-mode t)
 
 ;; Always show line numbers
 (require 'linum)
@@ -115,8 +130,8 @@
 (show-paren-mode t)
 
 ;; ;; Auto pairing
-(require 'autopair)
-(autopair-global-mode)
+;; (require 'autopair)
+;; (autopair-global-mode)
 
 ;; Whitespace options
 (require 'whitespace)
@@ -239,7 +254,7 @@
 ;; Cucumber
 ;;;;;;;;;;;;;
 
-(add-to-list 'load-path "~/.emacs.d/vendor/feature-mode")
+(add-to-list 'load-path (concat nee-vendor "feature-mode"))
 ;; optional configurations
 (autoload 'feature-mode "feature-mode" t)
 (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
@@ -279,3 +294,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (global-set-key (kbd "C-S-k") 'kill-whole-line)
+(global-set-key (kbd "s-Z") 'redo)
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
