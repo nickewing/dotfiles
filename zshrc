@@ -39,8 +39,7 @@ SAVEHIST=5000
 
 HOSTNAME=`hostname`
 PAGER='less'
-# Emulate emacs bindings
-EDITOR='emacs'
+EDITOR='mvim'
 
 #TZ="America/New_York"
 LC_ALL='en_US.UTF-8'
@@ -64,6 +63,9 @@ unsetopt ALL_EXPORT
 
 ## Bindings
 ################################################################################
+
+# Use emacs bindings
+bindkey -e
 
 bindkey "^P" history-incremental-search-backward
 bindkey "^N" history-incremental-search-forward

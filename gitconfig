@@ -12,10 +12,10 @@
 	b = branch
 	cp = cherry-pick
 	m = mergetool
-  f = fetch
-  pl = pull
-  ps = push
-  sm = submodule
+	f = fetch
+	pl = pull
+	ps = push
+	sm = submodule
 [merge]
 	tool = opendiff
 [push]

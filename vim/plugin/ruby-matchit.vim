@@ -64,7 +64,9 @@ function! s:Ruby_Matchit()
 
 endfunction
 
-nnoremap <buffer> \\\\\ %
+" Removed by Nick Ewing July 7th 2010
+" Caused "No mapping found" error
+" nnoremap <buffer> \\\\\ %
 nnoremap <buffer> % :call <SID>Ruby_Matchit()<CR>
 
 

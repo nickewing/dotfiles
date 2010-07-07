@@ -151,6 +151,9 @@ autocmd BufReadPost *
 " Disable tab highlight
 let g:xptemplate_highlight = ''
 
+" Disable brace completion because it doesn't work well
+let g:xptemplate_brace_complete = ''
+
 " NERDcommenter
 " =============
 
@@ -158,6 +161,14 @@ let g:xptemplate_highlight = ''
 let NERDSpaceDelims = 1
 " Comment all the lines selected
 let NERDBlockComIgnoreEmpty = 0
+" Disable default mappings
+let NERDCreateDefaultMappings = 0
+
+vmap <silent> <D-/> :call NERDComment(1, "alignBoth")<CR>
+nmap <silent> <D-/> :call NERDComment(0, "alignBoth")<CR>
+
+vmap <silent> <D-M-/> :call NERDComment(1, "uncomment")<CR>
+nmap <silent> <D-M-/> :call NERDComment(0, "uncomment")<CR>
 
 " NERDTree
 " ========
@@ -206,8 +217,8 @@ if has("gui_running")
   " Hide GUI toolbar
   set guioptions-=T
   " Default to full screen
-  set fuoptions=maxvert,maxhorz
-  au GUIEnter * set fullscreen
+  " set fuoptions=maxvert,maxhorz
+  " au GUIEnter * set fullscreen
   " Color scheme
   colorscheme railscasts
   " Set transparency
@@ -268,7 +279,7 @@ function! BufDelKeepWindow()
   execute "normal " . winNum
 endfunction
 
-map <silent> <Leader>cc :call BufDelKeepWindow()<CR>
+nmap <silent> <Leader>cc :call BufDelKeepWindow()<CR>
 
 function! SetTabNameToCWD()
   let path = split(getcwd(), "/")
@@ -293,36 +304,32 @@ command! -n=1 -complete=dir -bar DirTab :call DirTab('<args>')
 " ==============================================================================
 
 " Maps to make handling windows a bit easier
-noremap <silent> <Leader>o :wincmd o<CR>
-noremap <silent> <Leader>h :wincmd h<CR>
-noremap <silent> <Leader>j :wincmd j<CR>
-noremap <silent> <Leader>k :wincmd k<CR>
-noremap <silent> <Leader>l :wincmd l<CR>
-noremap <silent> <Leader>sb :wincmd p<CR>
-noremap <silent> <C-h> :vertical resize -10<CR>
-noremap <silent> <C-j> :resize +10<CR>
-noremap <silent> <C-k> :resize -10<CR>
-noremap <silent> <C-l> :vertical resize +10<CR>
-noremap <silent> <Leader>cj :wincmd j<CR>:close<CR>
-noremap <silent> <Leader>ck :wincmd k<CR>:close<CR>
-noremap <silent> <Leader>ch :wincmd h<CR>:close<CR>
-noremap <silent> <Leader>cl :wincmd l<CR>:close<CR>
-" noremap <silent> <Leader>cc :close<CR>
-noremap <silent> <Leader>cw :cclose<CR>
-noremap <silent> <Leader>ml <C-W>L
-noremap <silent> <Leader>mk <C-W>K
-noremap <silent> <Leader>mh <C-W>H
-noremap <silent> <Leader>mj <C-W>J
-noremap <silent> <C-7> <C-W>>
-noremap <silent> <C-8> <C-W>+
-noremap <silent> <C-9> <C-W>+
-noremap <silent> <C-0> <C-W>>
+map <silent> <Leader>o :wincmd o<CR>
+map <silent> <Leader>h :wincmd h<CR>
+map <silent> <Leader>j :wincmd j<CR>
+map <silent> <Leader>k :wincmd k<CR>
+map <silent> <Leader>l :wincmd l<CR>
+map <silent> <Leader>sb :wincmd p<CR>
+map <silent> <C-7> :vertical resize -10<CR>
+map <silent> <C-0> :vertical resize +10<CR>
+map <silent> <C-8> :resize +10<CR>
+map <silent> <C-9> :resize -10<CR>
+map <silent> <Leader>cj :wincmd j<CR>:close<CR>
+map <silent> <Leader>ck :wincmd k<CR>:close<CR>
+map <silent> <Leader>ch :wincmd h<CR>:close<CR>
+map <silent> <Leader>cl :wincmd l<CR>:close<CR>
+" map <silent> <Leader>cc :close<CR>
+map <silent> <Leader>cw :cclose<CR>
+map <silent> <Leader>ml <C-W>L
+map <silent> <Leader>mk <C-W>K
+map <silent> <Leader>mh <C-W>H
+map <silent> <Leader>mj <C-W>J
 
 " Resize frame
-map <silent> <C-H> :set columns-=10<CR>
-map <silent> <C-L> :set columns+=10<CR>
-map <silent> <C-K> :set lines-=10<CR>
-map <silent> <C-J> :set lines+=10<CR>
+" map <silent> <C-S-H> :set columns-=10<CR>
+" map <silent> <C-S-L> :set columns+=10<CR>
+" map <silent> <C-S-K> :set lines-=10<CR>
+" map <silent> <C-S-J> :set lines+=10<CR>
 
 " Remap Q to format instead of Ex mode
 map Q gq
