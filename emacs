@@ -115,6 +115,9 @@
 ;; TextMate mode
 (require 'textmate)
 (textmate-mode)
+(setq *textmate-gf-exclude*
+      "/\\.|vendor|fixtures|tmp|log|build|\\.xcodeproj|\\.nib|\\.framework|\\.app|\\.pbproj|\\.pbxproj|\\.xcode|\\.xcodeproj|\\.bundle|\\.pyc|\\.class|\\.jar")
+
 
 ;; Column Number Mode - show column number in modeline
 (column-number-mode t)
