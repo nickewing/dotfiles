@@ -39,7 +39,7 @@ SAVEHIST=5000
 
 HOSTNAME=`hostname`
 PAGER='less'
-EDITOR='mvim'
+EDITOR='mvim -f'
 
 #TZ="America/New_York"
 LC_ALL='en_US.UTF-8'

@@ -4,18 +4,19 @@
 [color]
 	ui = auto
 [alias]
-	c = commit
+	c  = commit
 	co = checkout
-	s = status
-	d = diff
-	a = add
-	b = branch
+	s  = status
+	d  = diff
+	a  = add
+	b  = branch
 	cp = cherry-pick
-	m = mergetool
-	f = fetch
+	m  = mergetool
+	f  = fetch
 	pl = pull
 	ps = push
 	sm = submodule
+	l  = log
 [merge]
 	tool = opendiff
 [push]
