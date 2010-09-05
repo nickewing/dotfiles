@@ -232,8 +232,8 @@
 ;; Erlang
 ;;;;;;;;;;;
 
-(setq nee-erlang-install-root "/usr/local/lib/erlang"
-      load-path (cons (concat nee-erlang-install-root "/lib/tools-2.6.4/emacs") load-path)
+(setq nee-erlang-install-root "/opt/local/lib/erlang"
+      load-path (cons (concat nee-erlang-install-root "/lib/tools-2.6.6/emacs") load-path)
       erlang-root-dir nee-erlang-install-root
       exec-path (cons (concat nee-erlang-install-root "/bin") exec-path))
 (require 'erlang-start)
@@ -316,6 +316,11 @@
 ;;;;;;;;;;
 
 (add-hook 'PDFLaTeX-mode-hook 'flyspell-mode)
+
+
+
+(add-to-list 'load-path (concat nee-vendor "elein"))
+(require 'elein)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Key bindings

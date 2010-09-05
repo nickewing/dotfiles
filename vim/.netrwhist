@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/nick/work/cti/brown_forman'
+let g:netrw_dirhist_2='/Users/nick/work/cti/creata_brands'
+let g:netrw_dirhist_3='/Users/nick/work/projects/nickewing.net'
+let g:netrw_dirhist_4='/Users/nick/work/cti/prooftrak/branches/agi'
+let g:netrw_dirhist_5='/Users/nick/work/coding/Javascript/coffee-script'
+let g:netrw_dirhist_6='/Users/nick/work/cti/camuto'

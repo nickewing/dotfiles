@@ -37,3 +37,6 @@
 [submodule "vim/bundle/vim-ruby"]
 	path = vim/bundle/vim-ruby
 	url = git://github.com/vim-ruby/vim-ruby.git
+[submodule "emacs.d/vendor/elein"]
+	path = emacs.d/vendor/elein
+	url = http://github.com/remvee/elein.git

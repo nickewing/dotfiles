@@ -140,6 +140,19 @@ autocmd BufReadPost *
 " Plug-in Settings
 " ==============================================================================
 
+" LaTeX
+" =====
+
+" View program for OSX
+if has("unix") && match(system("uname"),'Darwin') != -1
+  let g:Tex_ViewRule_pdf = 'open -a Skim.app'
+end
+
+" No default foldings
+let g:Tex_FoldedSections = ''
+let g:Tex_FoldedEnvironments = ''
+let g:Tex_FoldedCommands = ''
+
 " Ack command
 " ===========
 
@@ -310,10 +323,10 @@ map <silent> <Leader>j :wincmd j<CR>
 map <silent> <Leader>k :wincmd k<CR>
 map <silent> <Leader>l :wincmd l<CR>
 map <silent> <Leader>sb :wincmd p<CR>
-map <silent> <C-7> :vertical resize -10<CR>
-map <silent> <C-0> :vertical resize +10<CR>
-map <silent> <C-8> :resize +10<CR>
-map <silent> <C-9> :resize -10<CR>
+map <silent> <C-h> :vertical resize -10<CR>
+map <silent> <C-l> :vertical resize +10<CR>
+map <silent> <C-j> :resize +10<CR>
+map <silent> <C-k> :resize -10<CR>
 map <silent> <Leader>cj :wincmd j<CR>:close<CR>
 map <silent> <Leader>ck :wincmd k<CR>:close<CR>
 map <silent> <Leader>ch :wincmd h<CR>:close<CR>
@@ -326,10 +339,10 @@ map <silent> <Leader>mh <C-W>H
 map <silent> <Leader>mj <C-W>J
 
 " Resize frame
-" map <silent> <C-S-H> :set columns-=10<CR>
-" map <silent> <C-S-L> :set columns+=10<CR>
-" map <silent> <C-S-K> :set lines-=10<CR>
-" map <silent> <C-S-J> :set lines+=10<CR>
+map <silent> <C-Left> :set columns-=10<CR>
+map <silent> <C-Right> :set columns+=10<CR>
+map <silent> <C-Up> :set lines-=10<CR>
+map <silent> <C-Down> :set lines+=10<CR>
 
 " Remap Q to format instead of Ex mode
 map Q gq

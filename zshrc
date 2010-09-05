@@ -59,6 +59,11 @@ fi
 # RVM
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
+# Clojure REPL
+CLOJURE_DIR=$HOME/work/coding/Clojure
+CLOJURE_EXT=$CLOJURE_DIR/jline-0.9.94.jar:$CLOJURE_DIR/clojure-1.2.0:$CLOJURE_DIR/clojure-contrib-1.2.0/target
+CLOJURE_MAIN="jline.ConsoleRunner clojure.main"
+
 unsetopt ALL_EXPORT
 
 ## Bindings
@@ -217,7 +222,7 @@ alias guntar='tar -zxvf'
 
 alias ip='ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2'
 
-alias e='mvim --remote'
+alias e='mvim'
 
 alias du='du -sh'
 
