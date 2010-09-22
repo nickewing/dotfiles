@@ -24,7 +24,7 @@
 	url = git://github.com/tpope/vim-rails.git
 [submodule "vim/bundle/ack.vim"]
 	path = vim/bundle/ack.vim
-	url = git://github.com/mileszs/ack.vim.git
+	url = http://github.com/mileszs/ack.vim.git
 [submodule "vim/bundle/vcscommand"]
 	path = vim/bundle/vcscommand
 	url = git://repo.or.cz/vcscommand.git

@@ -17,12 +17,24 @@ setopt   ALL_EXPORT
 
 fpath=(/opt/local/share/zsh/4.3.10/functions $fpath)
 
+# reset path
+PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+# MacPorts
+PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+
 # mysql
-PATH="/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:$PATH"
+PATH="/usr/local/mysql/bin:$PATH"
+
 # postgres
 PATH="/opt/local/lib/postgresql84/bin/:$PATH"
-# general
-PATH="$HOME/bin:$HOME/bin/bin:/usr/local/bin:/usr/local/sbin:$PATH"							
+
+# personal
+PATH="$HOME/bin:$HOME/bin/bin:$PATH"							
+
+# latex
+PATH="/usr/local/texlive/2009/bin/universal-darwin:$PATH"
+
 # erlang tools
 PATH="$HOME/Work/Coding/Erlang/elib1/bin:$PATH"
 
@@ -204,6 +216,10 @@ precmd_functions+=_rprompt
 
 if [ `uname` = "Darwin" ]; then # OS X specific 
 	alias ls='ls -Ghl '
+  alias e='mvim'
+  gemacs() {
+    /Applications/Emacs.app/Contents/MacOS/Emacs "$@" &
+  }
 else # Non OS X
 	alias ls='ls -lh --color=auto'
 fi
@@ -222,7 +238,6 @@ alias guntar='tar -zxvf'
 
 alias ip='ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2'
 
-alias e='mvim'
 
 alias du='du -sh'
 

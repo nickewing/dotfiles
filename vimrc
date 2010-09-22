@@ -1,6 +1,8 @@
 " Setup
 " ==============================================================================
 
+set shell=sh
+
 " Add to search path
 set path+=~/Work/**
 
@@ -177,11 +179,11 @@ let NERDBlockComIgnoreEmpty = 0
 " Disable default mappings
 let NERDCreateDefaultMappings = 0
 
-vmap <silent> <D-/> :call NERDComment(1, "alignBoth")<CR>
-nmap <silent> <D-/> :call NERDComment(0, "alignBoth")<CR>
+vmap <silent> <D-/> :call NERDComment(1, "toggle")<CR>
+nmap <silent> <D-/> :call NERDComment(0, "toggle")<CR>
 
-vmap <silent> <D-M-/> :call NERDComment(1, "uncomment")<CR>
-nmap <silent> <D-M-/> :call NERDComment(0, "uncomment")<CR>
+" vmap <silent> <D-M-/> :call NERDComment(1, "uncomment")<CR>
+" nmap <silent> <D-M-/> :call NERDComment(0, "uncomment")<CR>
 
 " NERDTree
 " ========
@@ -312,6 +314,18 @@ function! DirTab(dir)
   call SetTabNameToCWD()
 endfunction
 command! -n=1 -complete=dir -bar DirTab :call DirTab('<args>')
+
+function! SaveAndEdit(file)
+  let f = a:file
+  execute "w " . f
+  execute "e! " . f
+endfunction
+command! -n=1 -complete=file -bar SaveAndEdit :call SaveAndEdit('<args>')
+
+" Custom File Types
+" ==============================================================================
+
+au BufNewFile,BufRead *.lfjs set filetype=lisp
 
 " General Key Bindings
 " ==============================================================================
