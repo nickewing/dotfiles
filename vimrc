@@ -27,6 +27,9 @@ filetype on
 filetype plugin on
 filetype indent on
 
+" Default encoding
+set enc=utf-8
+
 " Remember some commands
 set history=300
 
@@ -196,7 +199,13 @@ noremap <silent> <Leader>n :NERDTreeToggle<CR>
 " Set the maximum height of completion window
 let g:CommandTMaxHeight = 10
 
+function! CommandTFresh()
+  execute "CommandTFlush"
+  execute "CommandT"
+endfunction
+
 nmap <silent> <Leader>f :CommandT<CR>
+nmap <silent> <Leader>F :call CommandTFresh()<CR>
 
 " FuzzyFinder
 " ===========
