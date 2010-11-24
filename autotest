@@ -1,11 +1,11 @@
-require 'autotest/fsevent'
+# require 'autotest/fsevent'
 
-exceptions = %w{
-  .hg .git .svn .txt
-  .project stories/ tmtags Rakefile Capfile README 
-  config/ svn-commit .DS_Store test/data tags
-}
+# exceptions = %w{
+  # .hg .git .svn .txt
+  # .project stories/ tmtags Rakefile Capfile README 
+  # config/ svn-commit .DS_Store test/data tags
+# }
 
-Autotest.add_hook :initialize do |at|
-  exceptions.each{|exception|at.add_exception(exception)}
-end
+# Autotest.add_hook :initialize do |at|
+  # exceptions.each{|exception|at.add_exception(exception)}
+# end

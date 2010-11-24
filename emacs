@@ -1,4 +1,4 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -10,6 +10,8 @@
 ;; GUI
 
 (defun setup-gui ()
+  ;; hide scrollbar
+  (scroll-bar-mode 0)
   ;; hide toolbar
   (tool-bar-mode 0)
   ;; transparent background
@@ -84,6 +86,9 @@
 (setq custom-file "~/.emacs-custom.el")
 (load custom-file)
 
+;; Emacs Lisp Error Debugging
+(setq debug-on-error nil)
+
 ;; Tab size
 (setq nee-tab-size 2)
 
@@ -98,6 +103,9 @@
         plain-tex-mode  php-mode
         js2-mode        feature-mode
         css-mode))
+
+;; Vimpulse
+;; (require 'vimpulse)
 
 ;; Redo Mode - Enable redo function
 (require 'redo)
@@ -118,6 +126,8 @@
 (setq *textmate-gf-exclude*
       "/\\.|vendor|fixtures|tmp|log|build|\\.xcodeproj|\\.nib|\\.framework|\\.app|\\.pbproj|\\.pbxproj|\\.xcode|\\.xcodeproj|\\.bundle|\\.pyc|\\.class|\\.jar")
 
+;; Autorevert buffers
+(global-auto-revert-mode)
 
 ;; Column Number Mode - show column number in modeline
 (column-number-mode t)
@@ -325,6 +335,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Key bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key [?\C-, ?\C-h] 'windmove-left)
+(global-set-key [?\C-, ?\C-l] 'windmove-right)
+(global-set-key [?\C-, ?\C-j] 'windmove-down)
+(global-set-key [?\C-, ?\C-k] 'windmove-up)
 
 (global-set-key (kbd "C-S-k") 'kill-whole-line)
 (global-set-key (kbd "s-Z") 'redo)

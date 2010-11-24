@@ -56,7 +56,7 @@ set ruler
 " Left side of status bar
 set stl=\ #%n\ %-15(%l/%L,%c%)%-15([%b,0x%B]%)%y%([%R%M]%)%{fugitive#statusline()}
 " Right side of status bar"
-set stl+=%=%f\ 
+set stl+=%=%t\ 
 
 " Tell VIM to always put a status line in, even if there is only one window
 set laststatus=2
@@ -378,4 +378,9 @@ nmap <D-[> <<
 nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
+
+" Additional movement in normal mode when hjkl aren't available
+map <C-F> <Right>
+map <C-B> <Left>
+
 

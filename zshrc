@@ -245,3 +245,5 @@ alias -g ..='..'
 alias -g ...='../..'
 alias -g ....='../../..'
 
+alias -g gr='`git rev-parse --show-cdup`'
+
