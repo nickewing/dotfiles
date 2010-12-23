@@ -134,7 +134,7 @@ set formatoptions=tcqn
 
 " Make the 'cw' and like commands put a $ at the end instead of just deleting
 " the text and replacing it
-set cpoptions=ces$
+set cpoptions=Bces$
 
 " When editing a file, always jump to the last known cursor position.
 autocmd BufReadPost *
@@ -171,6 +171,9 @@ let g:xptemplate_highlight = ''
 
 " Disable brace completion because it doesn't work well
 let g:xptemplate_brace_complete = ''
+
+" Set trigger key to tab
+let g:xptemplate_key = '<Tab>'
 
 " NERDcommenter
 " =============
