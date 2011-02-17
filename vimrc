@@ -158,6 +158,10 @@ let g:Tex_FoldedSections = ''
 let g:Tex_FoldedEnvironments = ''
 let g:Tex_FoldedCommands = ''
 
+" remap to avoid collision with <C-j> mapping
+imap <C-g> <Plug>IMAP_JumpForward
+nmap <C-g> <Plug>IMAP_JumpForward
+
 " Ack command
 " ===========
 
@@ -338,6 +342,7 @@ command! -n=1 -complete=file -bar SaveAndEdit :call SaveAndEdit('<args>')
 " ==============================================================================
 
 au BufNewFile,BufRead *.lfjs set filetype=lisp
+au BufRead,BufNewFile *.hamljs set filetype=haml
 
 " General Key Bindings
 " ==============================================================================
@@ -365,10 +370,10 @@ map <silent> <Leader>mh <C-W>H
 map <silent> <Leader>mj <C-W>J
 
 " Resize frame
-map <silent> <C-Left> :set columns-=10<CR>
-map <silent> <C-Right> :set columns+=10<CR>
-map <silent> <C-Up> :set lines-=10<CR>
-map <silent> <C-Down> :set lines+=10<CR>
+noremap <silent> <C-Left> :set columns-=10<CR>
+noremap <silent> <C-Right> :set columns+=10<CR>
+noremap <silent> <C-Up> :set lines-=10<CR>
+noremap <silent> <C-Down> :set lines+=10<CR>
 
 " Remap Q to format instead of Ex mode
 map Q gq

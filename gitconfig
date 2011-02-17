@@ -17,6 +17,7 @@
 	ps = push
 	sm = submodule
 	l  = log
+  h  = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 [merge]
 	tool = opendiff
 [push]

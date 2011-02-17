@@ -38,6 +38,10 @@ PATH="/usr/local/texlive/2009/bin/universal-darwin:$PATH"
 # erlang tools
 PATH="$HOME/Work/Coding/Erlang/elib1/bin:$PATH"
 
+JBOSS_HOME="/Users/nick/school/cs420/lab2/jboss-4.2.3.GA"
+JAVA_HOME="/Library/Java/Home"
+LIBDIR="$JBOSS_HOME/client"
+
 
 # Make zsh root dir if it doesn't exist
 ZSH_ROOT="$HOME/.zsh"
