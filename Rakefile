@@ -15,6 +15,13 @@ def dot_path(file)
   "#{ENV['HOME']}/.#{file}"
 end
 
+desc 'Install dotfiles'
+task :install do
+  `git submodule init`
+  `git submodule update`
+  Rake::Task['link'].execute
+end
+
 desc 'Create links from dotfiles to home directory'
 task :link do
   Dir.foreach(SOURCE_DIR) do |f|
