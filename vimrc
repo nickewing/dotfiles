@@ -343,6 +343,7 @@ command! -n=1 -complete=file -bar SaveAndEdit :call SaveAndEdit('<args>')
 
 au BufNewFile,BufRead *.lfjs set filetype=lisp
 au BufRead,BufNewFile *.hamljs set filetype=haml
+au BufRead,BufNewFile *.ypp set filetype=yacc
 
 " General Key Bindings
 " ==============================================================================

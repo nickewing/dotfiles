@@ -42,6 +42,9 @@ JBOSS_HOME="/Users/nick/school/cs420/lab2/jboss-4.2.3.GA"
 JAVA_HOME="/Library/Java/Home"
 LIBDIR="$JBOSS_HOME/client"
 
+# opscode username
+OPSCODE_USER=nickewing
+
 
 # Make zsh root dir if it doesn't exist
 ZSH_ROOT="$HOME/.zsh"
@@ -241,6 +244,7 @@ alias get='curl -O '
 alias guntar='tar -zxvf'
 
 alias ip='ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2'
+alias public_ip='echo `curl -s http://whatismyip.akamai.com/`'
 
 
 alias du='du -sh'
