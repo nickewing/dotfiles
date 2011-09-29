@@ -30,13 +30,18 @@ PATH="/usr/local/mysql/bin:$PATH"
 PATH="/opt/local/lib/postgresql84/bin/:$PATH"
 
 # personal
-PATH="$HOME/bin:$HOME/bin/bin:$PATH"							
+PATH="$HOME/opt/bin:$HOME/bin:$HOME/bin/bin:$PATH"							
 
 # latex
 PATH="/usr/local/texlive/2009/bin/universal-darwin:$PATH"
 
 # erlang tools
 PATH="$HOME/Work/Coding/Erlang/elib1/bin:$PATH"
+
+# imagemagick stuff
+DYLD_LIBRARY_PATH="/usr/local/Cellar/imagemagick/6.6.7-10/lib"
+MAGICK_HOME="/usr/local/Cellar/imagemagick/6.6.7-10"
+PATH="/usr/local/Cellar/imagemagick/6.6.7-10/bin:$PATH"
 
 JBOSS_HOME="/Users/nick/school/cs420/lab2/jboss-4.2.3.GA"
 JAVA_HOME="/Library/Java/Home"
@@ -79,9 +84,12 @@ fi
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
 # Clojure REPL
-CLOJURE_DIR=$HOME/work/coding/Clojure
-CLOJURE_EXT=$CLOJURE_DIR/jline-0.9.94.jar:$CLOJURE_DIR/clojure-1.2.0:$CLOJURE_DIR/clojure-contrib-1.2.0/target
+CLOJURE_EXT=$HOME/opt/lib/java
 CLOJURE_MAIN="jline.ConsoleRunner clojure.main"
+CLOJURESCRIPT_HOME=$HOME/opt/lib/clojurescript
+
+# nodejs
+NODE_PATH="/usr/local/lib/node_modules"
 
 unsetopt ALL_EXPORT
 
@@ -243,8 +251,7 @@ alias get='curl -O '
 
 alias guntar='tar -zxvf'
 
-alias ip='ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2'
-alias public_ip='echo `curl -s http://whatismyip.akamai.com/`'
+alias ip='echo "Local:" && ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 && echo "\nPublic:" && echo `curl -s http://whatismyip.akamai.com/`'
 
 
 alias du='du -sh'
@@ -254,4 +261,8 @@ alias -g ...='../..'
 alias -g ....='../../..'
 
 alias -g gr='`git rev-parse --show-cdup`'
+
+
+# AnalogAnalytics Stuff
+alias hstat='echo "hydra0:"; ssh hydra0.analoganalytics.net "ps aux | grep hydra | grep -v grep; vmstat"; echo "hydra1:"; ssh hydra1.analoganalytics.net "ps aux | grep hydra | grep -v grep; vmstat"'
 

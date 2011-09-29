@@ -8,6 +8,7 @@ set path+=~/Work/**
 
 set runtimepath+=~/.vim/personal
 
+
 " Load all plugin bundles
 call pathogen#runtime_append_all_bundles()
 " This only needs to happen when new plugs are added
@@ -100,7 +101,7 @@ set noswapfile
 set wildmenu
 " set wildmode=list:longest
 set wildignore+=*.beam,*.o,.git,.svn,*.obj,*.jpg,*.jpeg,*.png,*.gif,*.swf
-set wildignore+=.DS_Store,*.amf,*.tiff,*.tif,*.ttf
+set wildignore+=.DS_Store,*.amf,*.tiff,*.tif,*.ttf,*.class,*.jar
 
 " Leader key
 let mapleader = ","
@@ -198,6 +199,7 @@ nmap <silent> <D-/> :call NERDComment(0, "toggle")<CR>
 " NERDTree
 " ========
 
+let NERDTreeDirArrows=1
 noremap <silent> <Leader>n :NERDTreeToggle<CR>
 
 " Command-t plugin
@@ -241,6 +243,9 @@ let Tlist_Show_One_File = 1
 
 nmap <silent> <Leader>i :TlistToggle<CR>
 
+" Ruby Test
+let g:rubytest_in_quickfix = 1
+
 " GUI Settings
 " ==============================================================================
 
@@ -251,6 +256,7 @@ if has("gui_running")
   " set fuoptions=maxvert,maxhorz
   " au GUIEnter * set fullscreen
   " Color scheme
+  set background=dark
   colorscheme railscasts
   " Set transparency
   set transparency=3
@@ -267,6 +273,8 @@ if has("gui_running")
   " Set some default sizes
   set columns=100
   set lines=60
+else
+  set background=dark
 endif
 
 " Useful Functions
@@ -338,23 +346,54 @@ function! SaveAndEdit(file)
 endfunction
 command! -n=1 -complete=file -bar SaveAndEdit :call SaveAndEdit('<args>')
 
+" Define a command to make it easier to use
+command! -nargs=+ QFDo call QFDo(<q-args>)
+
+" Function that does the work
+function! QFDo(command)
+    " Create a dictionary so that we can
+    " get the list of buffers rather than the
+    " list of lines in buffers (easy way
+    " to get unique entries)
+    let buffer_numbers = {}
+    " For each entry, use the buffer number as 
+    " a dictionary key (won't get repeats)
+    for fixlist_entry in getqflist()
+        let buffer_numbers[fixlist_entry['bufnr']] = 1
+    endfor
+    " Make it into a list as it seems cleaner
+    let buffer_number_list = keys(buffer_numbers)
+
+    " For each buffer
+    for num in buffer_number_list
+        " Select the buffer
+        exe 'buffer' num
+        " Run the command that's passed as an argument
+        exe a:command
+        " Save if necessary
+        update
+    endfor
+endfunction
+
 " Custom File Types
 " ==============================================================================
 
 au BufNewFile,BufRead *.lfjs set filetype=lisp
 au BufRead,BufNewFile *.hamljs set filetype=haml
 au BufRead,BufNewFile *.ypp set filetype=yacc
+au! BufRead,BufNewFile *.ll set filetype=llvm
+au! BufRead,BufNewFile *.cljs set filetype=clojure
 
 " General Key Bindings
 " ==============================================================================
 
 " Maps to make handling windows a bit easier
-map <silent> <Leader>o :wincmd o<CR>
-map <silent> <Leader>h :wincmd h<CR>
-map <silent> <Leader>j :wincmd j<CR>
-map <silent> <Leader>k :wincmd k<CR>
-map <silent> <Leader>l :wincmd l<CR>
-map <silent> <Leader>sb :wincmd p<CR>
+" map <silent> <Leader>o :wincmd o<CR>
+" map <silent> <Leader>h :wincmd h<CR>
+" map <silent> <Leader>j :wincmd j<CR>
+" map <silent> <Leader>k :wincmd k<CR>
+" map <silent> <Leader>l :wincmd l<CR>
+" map <silent> <Leader>sb :wincmd p<CR>
 map <silent> <C-h> :vertical resize -10<CR>
 map <silent> <C-l> :vertical resize +10<CR>
 map <silent> <C-j> :resize +10<CR>
@@ -365,10 +404,10 @@ map <silent> <Leader>ch :wincmd h<CR>:close<CR>
 map <silent> <Leader>cl :wincmd l<CR>:close<CR>
 " map <silent> <Leader>cc :close<CR>
 map <silent> <Leader>cw :cclose<CR>
-map <silent> <Leader>ml <C-W>L
-map <silent> <Leader>mk <C-W>K
-map <silent> <Leader>mh <C-W>H
-map <silent> <Leader>mj <C-W>J
+" map <silent> <Leader>ml <C-W>L
+" map <silent> <Leader>mk <C-W>K
+" map <silent> <Leader>mh <C-W>H
+" map <silent> <Leader>mj <C-W>J
 
 " Resize frame
 noremap <silent> <C-Left> :set columns-=10<CR>
@@ -388,8 +427,17 @@ nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
 
-" Additional movement in normal mode when hjkl aren't available
-map <C-F> <Right>
-map <C-B> <Left>
+" Run test under cursor
+nmap <silent> <Leader>r :w<CR>V:Rake<CR>
 
+" Opens an edit command with the path of the currently edited file filled in
+" Normal mode: <Leader>e
+map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
+" Inserts the path of the currently edited file into a command
+" Command mode: Ctrl+P
+cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+
+" Navigate back and forth in command
+cmap <C-b> <Left>
+cmap <C-f> <Right>

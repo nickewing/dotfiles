@@ -46,3 +46,12 @@
 [submodule "vim/bundle/vim-extradite"]
 	path = vim/bundle/vim-extradite
 	url = https://github.com/int3/vim-extradite.git
+[submodule "vim/bundle/gitv"]
+	path = vim/bundle/gitv
+	url = https://github.com/gregsexton/gitv.git
+[submodule "vim/bundle/VimClojure"]
+	path = vim/bundle/VimClojure
+	url = https://github.com/roman/VimClojure.git
+[submodule "vim/bundle/vimerl"]
+	path = vim/bundle/vimerl
+	url = https://github.com/jimenezrick/vimerl.git

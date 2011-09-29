@@ -1,6 +1,6 @@
 --type-add=ruby=.haml,.rake,.builder,.liquid
 --type-add=html=.html.erb,.html.haml
---type-add=js=.js.erb
+--type-add=js=.js.erb,.json
 --type-add=css=.sass
 --type-set=cucumber=.feature
 --type-set=clojure=.clj
