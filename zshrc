@@ -50,6 +50,9 @@ LIBDIR="$JBOSS_HOME/client"
 # opscode username
 OPSCODE_USER=nickewing
 
+# Non-LLVM gcc
+export CC=gcc-4.2
+
 
 # Make zsh root dir if it doesn't exist
 ZSH_ROOT="$HOME/.zsh"
@@ -239,8 +242,6 @@ else # Non OS X
 	alias ls='ls -lh --color=auto'
 fi
 
-alias g='git'
-
 alias man='LC_ALL=C LANG=C man'
 alias pu='pushd '
 alias po='popd '
@@ -253,16 +254,21 @@ alias guntar='tar -zxvf'
 
 alias ip='echo "Local:" && ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 && echo "\nPublic:" && echo `curl -s http://whatismyip.akamai.com/`'
 
-
 alias du='du -sh'
 
 alias -g ..='..'
 alias -g ...='../..'
 alias -g ....='../../..'
 
+# Git Stuff
+
+alias g='git'
 alias -g gr='`git rev-parse --show-cdup`'
 
+alias gcb="echo `git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`"
+alias gmm="export GIT_BRANCH=`gcb` && g co master && g pl && g co $GIT_BRANCH && g m master && g s"
+alias gdm="g d master | diffstat"
 
 # AnalogAnalytics Stuff
-alias hstat='echo "hydra0:"; ssh hydra0.analoganalytics.net "ps aux | grep hydra | grep -v grep; vmstat"; echo "hydra1:"; ssh hydra1.analoganalytics.net "ps aux | grep hydra | grep -v grep; vmstat"'
+alias hstat='for S in 0 1 2; do; echo "hydra$S"; ssh hydra$S.analoganalytics.net "ps aux | grep hydra | grep -v grep; vmstat"; done'
 

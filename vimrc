@@ -215,19 +215,20 @@ endfunction
 
 nmap <silent> <Leader>f :CommandT<CR>
 nmap <silent> <Leader>F :call CommandTFresh()<CR>
+nmap <silent> <Leader>b :CommandTBuffer<CR>
 
 " FuzzyFinder
 " ===========
 
-" Disable preview window
-let g:fuf_previewHeight = 0
-" Disable recent command menu
-let g:fuf_modesDisable = [ 'mrucmd', ]
-" Set maximum recent files
-let g:fuf_mrufile_maxItem = 50
-
-nmap <silent> <Leader>b :FufBuffer<CR>
-nmap <silent> <C-X><C-F> :FufMruFile<CR>
+" " Disable preview window
+" let g:fuf_previewHeight = 0
+" " Disable recent command menu
+" let g:fuf_modesDisable = [ 'mrucmd', ]
+" " Set maximum recent files
+" let g:fuf_mrufile_maxItem = 50
+" 
+" nmap <silent> <Leader>b :FufBuffer<CR>
+" nmap <silent> <C-X><C-F> :FufMruFile<CR>
 
 " Taglist
 " =======
@@ -245,6 +246,10 @@ nmap <silent> <Leader>i :TlistToggle<CR>
 
 " Ruby Test
 let g:rubytest_in_quickfix = 1
+
+" Syntastic syntax checking
+let g:syntastic_enable_signs=1
+let g:syntastic_quiet_warnings=1
 
 " GUI Settings
 " ==============================================================================
@@ -373,6 +378,37 @@ function! QFDo(command)
         " Save if necessary
         update
     endfor
+endfunction
+
+" command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
+" function! s:RunShellCommand(cmdline)
+  " echo a:cmdline
+  " let expanded_cmdline = a:cmdline
+  " for part in split(a:cmdline, ' ')
+     " if part[0] =~ '\v[%#<]'
+        " let expanded_part = fnameescape(expand(part))
+        " let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
+     " endif
+  " endfor
+  " keepalt botright new
+  " setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+  " call setline(1, 'You entered:    ' . a:cmdline)
+  " call setline(2, 'Expanded Form:  ' .expanded_cmdline)
+  " call setline(3,substitute(getline(2),'.','=','g'))
+  " keepalt '$read !'. expanded_cmdline
+  " setlocal nomodifiable
+  " 1
+" endfunction
+
+command! -complete=shellcmd RubyTestCF call s:RunShellCommand("bundle exec ruby " . bufname("%"))
+function! s:RunShellCommand(cmdline)
+  botright new
+  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+  call setline(1,a:cmdline)
+  call setline(2,substitute(a:cmdline,'.','=','g'))
+  execute 'silent $read !'.escape(a:cmdline,'%#')
+  setlocal nomodifiable
+  1
 endfunction
 
 " Custom File Types
