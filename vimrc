@@ -242,6 +242,8 @@ let Tlist_Enable_Fold_Column = 0
 " Only show list for current buffer
 let Tlist_Show_One_File = 1
 
+let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
+
 nmap <silent> <Leader>i :TlistToggle<CR>
 
 " Ruby Test

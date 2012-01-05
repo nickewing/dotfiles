@@ -1,4 +1,4 @@
-require 'ftools'
+require 'fileutils'
 
 SOURCE_DIR = "#{ENV['HOME']}/.dotfiles"
 SKIP_FILES = ['Rakefile', 'README']
@@ -36,7 +36,7 @@ task :link do
       if File.exists? backup
         puts "\tBackup aleady exists."
       else
-        File.move(path, backup)
+        FileUtils.move(path, backup)
       end
     end
 
