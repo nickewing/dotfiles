@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'pp'
-require 'wirble'
 require 'looksee/shortcuts'
 require 'bond'
 require 'interactive_editor'

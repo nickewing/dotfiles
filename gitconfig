@@ -2,7 +2,7 @@
 	name = Nick Ewing
 	email = nick@nickewing.net
 [color]
-	ui = auto
+	ui = always
 [alias]
   c  = commit
   co = checkout

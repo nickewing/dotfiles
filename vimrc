@@ -201,21 +201,67 @@ nmap <silent> <D-/> :call NERDComment(0, "toggle")<CR>
 
 let NERDTreeDirArrows=1
 noremap <silent> <Leader>n :NERDTreeToggle<CR>
+noremap <silent> <Leader><Leader> :NERDTreeFind<CR>
 
 " Command-t plugin
 " ================
 
-" Set the maximum height of completion window
-let g:CommandTMaxHeight = 10
+" " Set the maximum height of completion window
+" let g:CommandTMaxHeight = 10
+" 
+" function! CommandTFresh()
+"   execute "CommandTFlush"
+"   execute "CommandT"
+" endfunction
+" 
+" nmap <silent> <Leader>f :CommandT<CR>
+" nmap <silent> <Leader>F :call CommandTFresh()<CR>
+" nmap <silent> <Leader>b :CommandTBuffer<CR>
 
-function! CommandTFresh()
-  execute "CommandTFlush"
-  execute "CommandT"
+" Ctrl-P
+" ======
+
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_map = '<leader>f'
+
+nmap <silent> <Leader>b :CtrlPBuffer<CR>
+
+" Matcher
+" =======
+
+let g:path_to_matcher = "~/.vim/bundle/matcher/matcher"
+
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git/', 'cd %s && git ls-files'],
+    \ },
+  \ 'fallback': 'find %s -type f'
+  \ }
+
+function! g:GoodMatch(items, str, limit, mmode, ispath, crfile, regex)
+  " the Command-T matcher doesn't do regex. Return now if that was requested.
+  if a:regex == 1
+    let [lines, id] = [[], 0]
+    for item in a:items
+      let id += 1
+      try | if !( a:ispath && item == a:crfile ) && (match(item, a:str) >= 0)
+        cal add(lines, item)
+      en | cat | brea | endt
+    endfo
+    return lines
+  end
+
+  " a:mmode is currently ignored. In the future, we should probably do
+  " something about that. the matcher behaves like "full-line".
+  let cmd = g:path_to_matcher . " --limit " . a:limit . " --manifest " . ctrlp#utils#cachefile() . " "
+  if ! g:ctrlp_dotfiles
+    let cmd = cmd . "--no-dotfiles "
+  endif
+  let cmd = cmd . a:str
+  return split(system(cmd))
+
 endfunction
-
-nmap <silent> <Leader>f :CommandT<CR>
-nmap <silent> <Leader>F :call CommandTFresh()<CR>
-nmap <silent> <Leader>b :CommandTBuffer<CR>
+let g:ctrlp_match_func = { 'match': 'g:GoodMatch' }
 
 " FuzzyFinder
 " ===========
@@ -268,7 +314,7 @@ if has("gui_running")
   " Set transparency
   set transparency=3
   " Set font
-  set guifont=DejaVu\ Sans\ Mono:h11
+  " set guifont=DejaVu\ Sans\ Mono:h11
   set guioptions=ce 
   "              ||
   "              |+-- use simple dialogs rather than pop-ups
@@ -282,6 +328,7 @@ if has("gui_running")
   set lines=60
 else
   set background=dark
+  colorscheme railscasts_nick_moffit
 endif
 
 " Useful Functions
@@ -479,3 +526,8 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 " Navigate back and forth in command
 cmap <C-b> <Left>
 cmap <C-f> <Right>
+
+nnoremap <Up> <nop>
+nnoremap <Down> <nop>
+nnoremap <Left> <nop>
+nnoremap <Right> <nop>
