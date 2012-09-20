@@ -52,6 +52,9 @@ PATH="/usr/local/texlive/2009/bin/universal-darwin:$PATH"
 # erlang tools
 PATH="$HOME/Work/Coding/Erlang/elib1/bin:$PATH"
 
+# python
+PATH="/usr/local/share/python/:$PATH"
+
 JAVA_HOME="/Library/Java/Home"
 
 # opscode username

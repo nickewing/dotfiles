@@ -4,22 +4,23 @@
 [color]
 	ui = always
 [alias]
-  c  = commit
-  co = checkout
-  s  = status
-  st = stash
-  d  = diff
-  a  = add
-  b  = branch
-  cp = cherry-pick
-  m  = merge
-  mt = mergetool
-  f  = fetch
-  pl = pull
-  ps = push
-  sm = submodule
-  l  = log
-  h  = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	c  = commit
+	co = checkout
+	s  = status
+	st = stash
+	d  = diff
+	a  = add
+	b  = branch
+	cp = cherry-pick
+	m  = merge
+	mt = mergetool
+	f  = fetch
+	pl = pull
+	ps = push
+	sm = submodule
+	l  = log
+	h  = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	restore = !git checkout $(git rev-list -n 1 HEAD -- "$1")^ -- "$1"
 [merge]
 	tool = opendiff
 [push]
@@ -27,3 +28,4 @@
 	default = current
 [core]
 	excludesfile = /Users/nick/.gitignore
+	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
