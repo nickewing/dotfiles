@@ -1,7 +1,7 @@
 require 'fileutils'
 
 SOURCE_DIR = "#{ENV['HOME']}/.dotfiles"
-SKIP_FILES = ['Rakefile', 'README']
+SKIP_FILES = ['Rakefile', 'README', 'vendor', 'oh-my-zsh-custom']
 
 def skip?(f)
   f[0..0] == '.' || SKIP_FILES.include?(f)
@@ -16,10 +16,11 @@ def dot_path(file)
 end
 
 desc 'Install dotfiles'
-task :install do
-  `git submodule init`
-  `git submodule update`
-  Rake::Task['link'].execute
+task :install => [:init_submodules, :vim_setup, :link]
+
+task :init_submodules do
+  system "git submodule init"
+  system "git submodule update"
 end
 
 desc 'Create links from dotfiles to home directory'
@@ -59,4 +60,9 @@ task :unlink do
       puts "#{path} is not a symlink... skipping..."
     end
   end
+end
+
+task :vim_setup do
+  system "vim +BundleInstall +qall"
+  system "cd vim/bundle/matcher && make"
 end

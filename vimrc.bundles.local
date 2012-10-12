@@ -1,0 +1,15 @@
+" SPF13 Settings
+" ==============================================================================
+
+let g:spf13_bundle_groups=['general', 'neocomplcache', 'programming', 'ruby', 'javascript', 'html', 'misc']
+
+" Vundle
+" ==============================================================================
+
+Bundle "tpope/vim-haml"
+Bundle "vim-ruby/vim-ruby"
+Bundle "vim-scripts/VimClojure"
+Bundle "kchmck/vim-coffee-script"
+Bundle "oscarh/vimerl"
+Bundle "burke/matcher"
+Bundle "jcf/vim-latex"
