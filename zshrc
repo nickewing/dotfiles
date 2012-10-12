@@ -64,7 +64,9 @@ JAVA_HOME="/Library/Java/Home"
 OPSCODE_USER=nickewing
 
 # Use Non-LLVM gcc on OSX
-CC=gcc-4.2
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  CC=gcc-4.2
+fi
 
 HOSTNAME=`hostname`
 PAGER='less'
