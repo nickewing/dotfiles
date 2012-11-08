@@ -1,44 +1,44 @@
 require 'rubygems'
 require 'pp'
-require 'looksee/shortcuts'
-require 'bond'
-require 'interactive_editor'
 
-# Better autocompletion
-# http://tagaholic.me/bond/
-Bond.start
+begin
+  require 'looksee'
+  require 'interactive_editor'
+  require 'wirble'
 
-# Colors
-# http://pablotron.org/software/wirble/
-Wirble.init
-Wirble::Colorize.colors = Wirble::Colorize.colors.merge({
-  :comma              => :light_blue,
-  :refers             => :light_blue,
+  # Colors
+  # http://pablotron.org/software/wirble/
+  Wirble.init
+  Wirble::Colorize.colors = Wirble::Colorize.colors.merge({
+    :comma              => :light_blue,
+    :refers             => :light_blue,
 
-  :open_hash          => :light_blue,
-  :close_hash         => :light_blue,
-  :open_array         => :light_blue,
-  :close_array        => :light_blue,
+    :open_hash          => :light_blue,
+    :close_hash         => :light_blue,
+    :open_array         => :light_blue,
+    :close_array        => :light_blue,
 
-  :open_object        => :light_blue,
-  :object_class       => :light_blue,
-  :object_addr_prefix => :light_blue,
-  :object_line_prefix => :light_blue,
-  :close_object       => :light_blue,
+    :open_object        => :light_blue,
+    :object_class       => :light_blue,
+    :object_addr_prefix => :light_blue,
+    :object_line_prefix => :light_blue,
+    :close_object       => :light_blue,
 
-  :symbol             => :red,
-  :symbol_prefix      => :red,
+    :symbol             => :red,
+    :symbol_prefix      => :red,
 
-  :open_string        => :green,
-  :string             => :green,
-  :close_string       => :green,
+    :open_string        => :green,
+    :string             => :green,
+    :close_string       => :green,
 
-  :number             => :red,
-  :keyword            => :yellow,
-  :range              => :red,
-  :class              => :cyan
-})
-Wirble.colorize
+    :number             => :red,
+    :keyword            => :yellow,
+    :range              => :red,
+    :class              => :cyan
+  })
+  Wirble.colorize
+rescue LoadError => err
+end
 
 if IRB
   # Create a custom prompt

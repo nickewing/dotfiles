@@ -5,3 +5,4 @@ tags-ja
 vim/.netrwhist
 vim/bundle/*
 !vim/bundle/.gitkeep
+config/irb/bundle

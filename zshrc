@@ -2,7 +2,7 @@
 ZSH=$HOME/.dotfiles/vendor/oh-my-zsh
 
 # Change custom directory path
-ZSH_CUSTOM="$HOME/.dotfiles/oh-my-zsh-custom"
+ZSH_CUSTOM="$HOME/.dotfiles/config/zsh"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -56,16 +56,16 @@ PATH="/usr/local/texlive/2009/bin/universal-darwin:$PATH"
 PATH="$HOME/Work/Coding/Erlang/elib1/bin:$PATH"
 
 # python
-PATH="/usr/local/share/python/:$PATH"
+PATH="/usr/local/share/python:$PATH"
 
-JAVA_HOME="/Library/Java/Home"
 
 # opscode username
 OPSCODE_USER=nickewing
 
 # Use Non-LLVM gcc on OSX
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  CC=gcc-4.2
+  # CC=gcc-4.2
+  JAVA_HOME="/Library/Java/Home"
 fi
 
 HOSTNAME=`hostname`

@@ -4,9 +4,6 @@
 [submodule "emacs.d/vendor/elein"]
 	path = emacs.d/vendor/elein
 	url = http://github.com/remvee/elein.git
-[submodule "vendor/spf13-vim"]
-	path = vendor/spf13-vim
-	url = https://github.com/spf13/spf13-vim.git
 [submodule "vendor/oh-my-zsh"]
 	path = vendor/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
