@@ -15,8 +15,11 @@ def dot_path(file)
   "#{ENV['HOME']}/.#{file}"
 end
 
-desc 'Install dotfiles'
-task :install => [:init_submodules, :vim_setup, :irb_setup, :link]
+desc "Install dotfiles"
+task :install => [:link, :init_submodules, :vim_setup, :irb_setup]
+
+desc "Uninstall dotfiles"
+task :uninstall => [:unlink]
 
 task :init_submodules do
   system "git submodule init"
