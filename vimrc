@@ -2,8 +2,8 @@
 " ==============================================================================
 
 filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.dotfiles/vendor/vim/vundle
+call vundle#rc("~/.dotfiles/vendor/vim")
 
 source ~/.dotfiles/config/vim/bundles.vim
 
@@ -11,6 +11,8 @@ let g:bundle_names = map(copy(g:bundles), 'v:val.name')
 function! HasBundle(name)
   return index(g:bundle_names, a:name) != -1
 endfunction
+
+set rtp+=~/.dotfiles/config/vim
 
 " General
 " ==============================================================================
@@ -106,7 +108,7 @@ autocmd BufReadPost *
 " ==============================================================================
 
 set background=dark     " Assume a dark background
-if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
+if filereadable(expand("~/.dotfiles/vendor/vim/vim-colors-solarized/colors/solarized.vim"))
   let g:solarized_termcolors=256
   let g:solarized_termtrans=1
   let g:solarized_contrast="high"

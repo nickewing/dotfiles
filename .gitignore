@@ -3,6 +3,6 @@ tags
 doc/tags
 tags-ja
 vim/.netrwhist
-vim/bundle/*
-!vim/bundle/.gitkeep
+vendor/vim/
+!vendor/vim/.gitkeep
 config/irb/bundle
