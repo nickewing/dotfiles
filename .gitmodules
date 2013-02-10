@@ -10,3 +10,6 @@
 [submodule "vim/bundle/vundle"]
 	path = vim/bundle/vundle
 	url = https://github.com/gmarik/vundle.git
+[submodule "vendor/matcher"]
+	path = vendor/matcher
+	url = https://github.com/burke/matcher.git

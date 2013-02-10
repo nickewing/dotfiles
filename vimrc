@@ -71,13 +71,6 @@ set wildmode=list:longest
 set wildignore+=*.beam,*.o,.git,.svn,*.obj,*.jpg,*.jpeg,*.png,*.gif,*.swf
 set wildignore+=.DS_Store,*.amf,*.tiff,*.tif,*.ttf,*.class,*.jar
 
-" Persistent undo
-if has('persistent_undo')
-  set undofile
-  set undolevels=1000  " maximum number of changes that can be undone
-  set undoreload=10000 " maximum number of lines to save for undo on a buffer reload
-endif
-
 " Editing
 " ==============================================================================
 
@@ -236,16 +229,21 @@ endif
 " Ctrl-P
 " ======
 
+" Also see vim/plugin/ctrlp_matcher.vim
+
 if HasBundle('ctrlp.vim')
   let g:ctrlp_match_window_reversed = 0
   let g:ctrlp_map = '<leader>f'
 
-  " Syntastic syntax checking
-  let g:syntastic_enable_signs=1
-  let g:syntastic_quiet_warnings=1
-
   nmap <silent> <Leader>b :CtrlPBuffer<CR>
+
 endif
+
+" Syntastic
+" =========
+
+let g:syntastic_enable_signs=1
+let g:syntastic_quiet_warnings=1
 
 " neocomplcache
 " =============
