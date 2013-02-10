@@ -64,7 +64,7 @@ end
 
 task :vim_setup do
   system "vim +BundleInstall +qall"
-  system "cd vim/bundle/matcher && make"
+  #system "cd vim/bundle/matcher && make"
 end
 
 task :irb_setup do
