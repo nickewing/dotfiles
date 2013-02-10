@@ -1,7 +1,7 @@
 require 'fileutils'
 
 SOURCE_DIR = "#{ENV['HOME']}/.dotfiles"
-SKIP_FILES = ['Rakefile', 'README', 'vendor', 'oh-my-zsh-custom']
+SKIP_FILES = ['Rakefile', 'README', 'vendor', 'config']
 
 def skip?(f)
   f[0..0] == '.' || SKIP_FILES.include?(f)
