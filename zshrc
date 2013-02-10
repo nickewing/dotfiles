@@ -36,7 +36,6 @@ plugins=(osx git ruby rvm brew lein knife npm)
 
 source $ZSH/oh-my-zsh.sh
 
-
 # Exports
 ################################################################################
 setopt ALL_EXPORT
@@ -47,42 +46,16 @@ setopt ALL_EXPORT
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # personal
-PATH="$HOME/opt/bin:$HOME/bin:$PATH"
-
-# latex
-PATH="/usr/local/texlive/2009/bin/universal-darwin:$PATH"
-
-# erlang tools
-PATH="$HOME/Work/Coding/Erlang/elib1/bin:$PATH"
-
-# python
-PATH="/usr/local/share/python:$PATH"
-
-
-# opscode username
-OPSCODE_USER=nickewing
-
-# Use Non-LLVM gcc on OSX
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  # CC=gcc-4.2
-  JAVA_HOME="/Library/Java/Home"
+if [[ -d "$HOME/opt/bin" ]]; then
+  PATH="$HOME/opt/bin:$PATH"
 fi
 
-HOSTNAME=`hostname`
-PAGER='less'
-EDITOR='mvim -f'
-
-DISPLAY=:0
-
-# RVM
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-
-# Clojure REPL
-CLOJURE_EXT=$HOME/opt/lib/java
-CLOJURE_MAIN="jline.ConsoleRunner clojure.main"
-CLOJURESCRIPT_HOME=$HOME/opt/lib/clojurescript
-
-# nodejs
-NODE_PATH="/usr/local/lib/node_modules"
+if [[ -d "$HOME/bin" ]]; then
+  PATH="$HOME/bin:$PATH"
+fi
 
 unsetopt ALL_EXPORT
+
+if [[ -f "$HOME/.zshrc.local" ]]; then
+  source $HOME/.zshrc.local
+fi
