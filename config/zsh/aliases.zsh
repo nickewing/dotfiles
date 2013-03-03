@@ -8,6 +8,7 @@ if [ `uname` = "Darwin" ]; then # OS X specific
 else # Non OS X
 	alias ls='ls -lh --color=auto'
   alias e='gvim'
+  alias open='xdg-open'
 fi
 
 alias man='LC_ALL=C LANG=C man'
