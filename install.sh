@@ -40,7 +40,6 @@ if [ `uname` = "Darwin" ]; then
   ensure_all_dependencies_installed
 else
   if command -v apt-get >/dev/null 2>&1; then
-    echo "Using apt-get"
     ensure_all_dependencies_installed
   else
     echo "Please install git, zsh and ruby before continuing"
