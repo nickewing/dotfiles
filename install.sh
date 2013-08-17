@@ -65,6 +65,7 @@ else
 fi
 
 # clone repo
+echo "Cloning dotfiles repository"
 git clone $repository $install_dir
 cd $install_dir
 
