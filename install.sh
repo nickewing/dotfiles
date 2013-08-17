@@ -1,4 +1,6 @@
 dependencies="git zsh curl"
+install_dir="$HOME/.dotfiles"
+repository="git@github.com:nickewing/dotfiles.git"
 
 ################################################################################
 
@@ -49,5 +51,8 @@ if has_command rvm; then
 else
   curl -L https://get.rvm.io | bash
 fi
+
+git clone $repository $install_dir
+cd @install_dir
 
 rake install
