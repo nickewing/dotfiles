@@ -65,7 +65,7 @@ if has_command ruby; then
   echo "ruby already installed"
 else
   rvm install 1.9.3
-  rvm use 1.9.3
+  rvm --default 1.9.3
 fi
 
 # clone repo
