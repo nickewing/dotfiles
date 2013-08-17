@@ -53,6 +53,6 @@ else
 fi
 
 git clone $repository $install_dir
-cd @install_dir
+cd $install_dir
 
 rake install
