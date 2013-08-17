@@ -1,4 +1,3 @@
-dependencies="git zsh curl"
 install_dir="$HOME/.dotfiles"
 repository="https://github.com/nickewing/dotfiles.git"
 
@@ -23,11 +22,13 @@ function ensure_dependency_installed {
 }
 
 function ensure_all_dependencies_installed {
+  dependencies="git zsh curl"
   for dependency in $dependencies; do
     ensure_dependency_installed $dependency
   done
 }
 
+# install package dependencies
 if [ `uname` = "Darwin" ]; then
   if command -v brew >/dev/null 2>&1; then
     echo "brew already installed"
@@ -46,6 +47,11 @@ else
   fi
 fi
 
+# switch to zsh
+sudo chsh -s /bin/zsh $USER
+zsh
+
+# install rvm
 if has_command rvm; then
   echo "rvm alredy installed"
 else
@@ -54,6 +60,7 @@ else
   source "$HOME/.profile"
 fi
 
+# install ruby through rvm
 if has_command ruby; then
   echo "ruby already installed"
 else
@@ -61,9 +68,11 @@ else
   rvm use 1.9.3
 fi
 
+# clone repo
 git clone $repository $install_dir
 cd $install_dir
 
+# install rake
 if has_command rake; then
   echo "rake already installed"
 else
@@ -72,4 +81,5 @@ else
   fi
 fi
 
+# install dotfiles
 rake install
