@@ -49,12 +49,27 @@ fi
 if has_command rvm; then
   echo "rvm alredy installed"
 else
+  echo "Installing rvm"
   curl -L https://get.rvm.io | bash
   source "$HOME/.profile"
+fi
+
+if has_command ruby; then
+  echo "ruby already installed"
+else
+  rvm install 1.9.3
+  rvm use 1.9.3
 fi
 
 git clone $repository $install_dir
 cd $install_dir
 
-gem install rake
+if has_command rake; then
+  echo "rake already installed"
+else
+  if ! gem install rake; then
+    sudo gem install rake
+  fi
+fi
+
 rake install
