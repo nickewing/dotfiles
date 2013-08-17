@@ -64,7 +64,7 @@ else
 fi
 
 # clone repo
-if [ -f $install_dir ]; then
+if [ -d $install_dir ]; then
   echo "Pulling origin master in $install_dir"
   cd $install_dir
   git pull origin master
