@@ -65,9 +65,15 @@ else
 fi
 
 # clone repo
-echo "Cloning dotfiles repository"
-git clone $repository $install_dir
-cd $install_dir
+if [ -f $install_dir ]; then
+  echo "Pulling origin master in $install_dir"
+  cd $install_dir
+  git pull origin master
+else
+  echo "Cloning dotfiles repository"
+  git clone $repository $install_dir
+  cd $install_dir
+fi
 
 # install rake
 if has_command rake; then
