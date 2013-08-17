@@ -1,10 +1,10 @@
-require 'fileutils'
+require "fileutils"
 
 SOURCE_DIR = "#{ENV['HOME']}/.dotfiles"
-SKIP_FILES = ['Rakefile', 'README', 'vendor', 'config']
+SKIP_FILES = ["Rakefile", "README", "vendor", "config", "install.sh"]
 
 def skip?(f)
-  f[0..0] == '.' || SKIP_FILES.include?(f)
+  f[0..0] == "." || SKIP_FILES.include?(f)
 end
 
 def source_path(file)
@@ -26,7 +26,7 @@ task :init_submodules do
   system "git submodule update"
 end
 
-desc 'Create links from dotfiles to home directory'
+desc "Create links from dotfiles to home directory"
 task :link do
   Dir.foreach(SOURCE_DIR) do |f|
     next if skip? f
@@ -49,7 +49,7 @@ task :link do
   end
 end
 
-desc 'Delete links to dotfiles in home directory'
+desc "Delete links to dotfiles in home directory"
 task :unlink do
   Dir.foreach(SOURCE_DIR) do |f|
     next if skip? f

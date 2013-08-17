@@ -1,6 +1,6 @@
 dependencies="git zsh curl"
 install_dir="$HOME/.dotfiles"
-repository="git@github.com:nickewing/dotfiles.git"
+repository="https://github.com/nickewing/dotfiles.git"
 
 ################################################################################
 
@@ -50,9 +50,11 @@ if has_command rvm; then
   echo "rvm alredy installed"
 else
   curl -L https://get.rvm.io | bash
+  source "$HOME/.profile"
 fi
 
 git clone $repository $install_dir
 cd $install_dir
 
+gem install rake
 rake install
