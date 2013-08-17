@@ -7,7 +7,7 @@ function has_command {
   command -v $1 >/dev/null 2>&1;
 }
 
-function ensure_dependency_installed {
+function ensure_package_installed {
   if has_command $1; then
     echo "$1 already installed"
   else
@@ -21,10 +21,10 @@ function ensure_dependency_installed {
   fi
 }
 
-function ensure_all_dependencies_installed {
-  dependencies="git zsh curl"
-  for dependency in $dependencies; do
-    ensure_dependency_installed $dependency
+function ensure_all_packages_installed {
+  packages="git zsh curl"
+  for package in $packages; do
+    ensure_package_installed $package
   done
 }
 
@@ -37,10 +37,10 @@ if [ `uname` = "Darwin" ]; then
     ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
   fi
 
-  ensure_all_dependencies_installed
+  ensure_all_packages_installed
 else
   if command -v apt-get >/dev/null 2>&1; then
-    ensure_all_dependencies_installed
+    ensure_all_packages_installed
   else
     echo "Please install git, zsh and ruby before continuing"
   fi
