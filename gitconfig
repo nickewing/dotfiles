@@ -6,6 +6,7 @@
 [alias]
 	c  = commit
 	co = checkout
+  ca = commit --amend -C HEAD
 	s  = status
 	st = stash
 	d  = diff
@@ -21,6 +22,10 @@
 	l  = log
 	h  = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	restore = !git checkout $(git rev-list -n 1 HEAD -- "$1")^ -- "$1"
+  rmb = !sh -c 'git branch -D $1 && git push origin :$1' -
+  who = shortlog -n -s --no-merges
+  cleanup = !git gc && git clean -dfx && git stash clear
+  cleanupall = !git remote prune origin && git gc && git clean -dfx && git stash clear
 [merge]
 	tool = opendiff
 [push]
@@ -29,3 +34,5 @@
 [core]
 	excludesfile = ~/.dotfiles/config/git/global_ignore
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[rerere]
+	enabled = true

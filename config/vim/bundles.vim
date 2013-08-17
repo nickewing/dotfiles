@@ -1,7 +1,8 @@
 " General
+Bundle 'tpope/vim-dispatch'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
+" Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'tpope/vim-surround'
 " Bundle 'AutoClose'
 Bundle 'kien/ctrlp.vim'
@@ -16,9 +17,9 @@ Bundle 'mbbill/undotree'
 " Bundle 'myusuf3/numbers.vim'
 " Bundle 'nathanaelkane/vim-indent-guides'
 
-" Bundle 'Shougo/neocomplcache'
-" Bundle 'Shougo/neocomplcache-snippets-complete'
-Bundle 'honza/snipmate-snippets'
+Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neosnippet'
+Bundle 'honza/vim-snippets'
 
 " Color schemes
 Bundle 'spf13/vim-colors'
@@ -59,6 +60,7 @@ Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
 " Ruby
 Bundle "vim-ruby/vim-ruby"
 Bundle "tpope/vim-haml"
+Bundle "tpope/vim-rails"
 
 " Misc Languages
 Bundle 'tpope/vim-markdown'
