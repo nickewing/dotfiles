@@ -47,10 +47,6 @@ else
   fi
 fi
 
-# switch to zsh
-sudo chsh -s /bin/zsh $USER
-/bin/zsh --login
-
 # install rvm
 if has_command rvm; then
   echo "rvm alredy installed"
@@ -83,3 +79,7 @@ fi
 
 # install dotfiles
 rake install
+
+# switch to zsh
+sudo chsh -s /bin/zsh $USER
+/bin/zsh --login
