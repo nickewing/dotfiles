@@ -49,7 +49,7 @@ fi
 
 # switch to zsh
 sudo chsh -s /bin/zsh $USER
-zsh
+/bin/zsh --login
 
 # install rvm
 if has_command rvm; then
