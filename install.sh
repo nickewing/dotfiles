@@ -28,6 +28,16 @@ function ensure_all_packages_installed {
   done
 }
 
+function ensure_gem_installed {
+  if has_command $1; then
+    echo "$2 already installed"
+  else
+    if ! gem install $2; then
+      sudo gem install $2
+    fi
+  fi
+}
+
 # install package dependencies
 if [ `uname` = "Darwin" ]; then
   if command -v brew >/dev/null 2>&1; then
@@ -74,14 +84,9 @@ else
   cd $install_dir
 fi
 
-# install rake
-if has_command rake; then
-  echo "rake already installed"
-else
-  if ! gem install rake; then
-    sudo gem install rake
-  fi
-fi
+# install gems
+ensure_gem_installed rake rake
+ensure_gem_installed bundle bundler
 
 # install dotfiles
 rake install
