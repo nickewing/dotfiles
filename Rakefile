@@ -71,5 +71,5 @@ task :vim_setup do
 end
 
 task :irb_setup do
-  system "cd config/irb && bundle install"
+  system "cd config/irb && bundle install --system"
 end
