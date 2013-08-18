@@ -88,12 +88,11 @@ fi
 ensure_gem_installed rake rake
 ensure_gem_installed bundle bundler
 
+# install dotfiles
+/bin/bash -c "cd $install_dir && rake install"
+
 # switch default shell to zsh
 echo "Changing $user's shell to zsh"
 sudo chsh -s /bin/zsh $USER
-
-# install dotfiles
-cd $install_dir && rake install
-
 echo "Switching to zsh"
 /bin/zsh --login
