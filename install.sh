@@ -22,7 +22,7 @@ function ensure_package_installed {
 }
 
 function ensure_all_packages_installed {
-  packages="git zsh curl"
+  packages="git zsh curl vim"
   for package in $packages; do
     ensure_package_installed $package
   done
