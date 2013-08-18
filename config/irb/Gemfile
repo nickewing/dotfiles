@@ -1,6 +1,0 @@
-source "http://rubygems.org"
-source "http://gems.github.com"
-
-gem "looksee"
-gem "interactive_editor"
-gem "wirble"

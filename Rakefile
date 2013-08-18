@@ -16,7 +16,7 @@ def dot_path(file)
 end
 
 desc "Install dotfiles"
-task :install => [:link, :init_submodules, :vim_setup, :irb_setup]
+task :install => [:link, :init_submodules, :vim_setup]
 
 desc "Uninstall dotfiles"
 task :uninstall => [:unlink]
@@ -68,8 +68,4 @@ end
 task :vim_setup do
   system "vim +BundleInstall +qall"
   system "cd vendor/matcher && make"
-end
-
-task :irb_setup do
-  system "cd config/irb && bundle install --system"
 end
