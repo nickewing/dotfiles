@@ -34,6 +34,7 @@ function ensure_gem_installed {
   else
     echo "Installing $2"
     if ! gem install $2; then
+      echo "Installing with sudo"
       sudo gem install $2
     fi
   fi
