@@ -78,12 +78,10 @@ fi
 # clone repo
 if [ -d $install_dir ]; then
   echo "Pulling origin master in $install_dir"
-  cd $install_dir
-  git pull origin master
+  cd $install_dir && git pull origin master
 else
   echo "Cloning dotfiles repository"
   git clone $repository $install_dir
-  cd $install_dir
 fi
 
 # install gems
@@ -91,7 +89,7 @@ ensure_gem_installed rake rake
 ensure_gem_installed bundle bundler
 
 # install dotfiles
-rake install
+cd $install_dir && rake install
 
 # switch to zsh
 sudo chsh -s /bin/zsh $USER
