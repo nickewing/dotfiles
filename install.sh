@@ -32,6 +32,7 @@ function ensure_gem_installed {
   if has_command $1; then
     echo "$2 already installed"
   else
+    echo "Installing $2"
     if ! gem install $2; then
       sudo gem install $2
     fi
