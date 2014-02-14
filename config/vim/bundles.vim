@@ -1,6 +1,7 @@
 " General
 Bundle 'tpope/vim-dispatch'
 Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdtree'
 " Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'tpope/vim-surround'

@@ -73,6 +73,9 @@ set wildmode=list:longest
 set wildignore+=*.beam,*.o,.git,.svn,*.obj,*.jpg,*.jpeg,*.png,*.gif,*.swf
 set wildignore+=.DS_Store,*.amf,*.tiff,*.tif,*.ttf,*.class,*.jar
 
+" Set terminal to 256 colors
+set t_Co=256
+
 " Editing
 " ==============================================================================
 
@@ -245,7 +248,7 @@ endif
 " =========
 
 let g:syntastic_enable_signs=1
-let g:syntastic_quiet_warnings=1
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 
 " neocomplcache
 " =============
