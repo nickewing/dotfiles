@@ -66,6 +66,6 @@ task :unlink do
 end
 
 task :vim_setup do
-  system "vim +BundleInstall +qall"
+  system "vim +PluginInstall +qall"
   system "cd vendor/matcher && make"
 end

@@ -1,15 +1,23 @@
 " Load Vundle Bundles
 " ==============================================================================
 
+set nocompatible
 filetype off
 set rtp+=~/.dotfiles/vendor/vim/vundle
-call vundle#rc("~/.dotfiles/vendor/vim")
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
 
 source ~/.dotfiles/config/vim/bundles.vim
 
-let g:bundle_names = map(copy(g:bundles), 'v:val.name')
+call vundle#end()
+filetype plugin indent on
+
+" let g:bundle_names = map(copy(g:bundles), 'v:val.name')
 function! HasBundle(name)
-  return index(g:bundle_names, a:name) != -1
+  "return index(g:bundle_names, a:name) != -1
+
+  return has_key(g:bundle_names, a:name)
 endfunction
 
 set rtp+=~/.dotfiles/config/vim
@@ -17,7 +25,6 @@ set rtp+=~/.dotfiles/config/vim
 " General
 " ==============================================================================
 
-set nocompatible " Don't worry about vi compatibility
 
 syntax enable " Turn on syntax highlighting
 filetype plugin indent on " Allow filetype specific options

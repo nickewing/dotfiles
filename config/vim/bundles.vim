@@ -1,74 +1,75 @@
 " General
-Bundle 'tpope/vim-dispatch'
-Bundle 'mileszs/ack.vim'
-Bundle 'rking/ag.vim'
-Bundle 'scrooloose/nerdtree'
-" Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'tpope/vim-surround'
-" Bundle 'AutoClose'
-Bundle 'kien/ctrlp.vim'
-Bundle "burke/matcher"
-Bundle 'vim-scripts/sessionman.vim'
-Bundle 'matchit.zip'
-Bundle 'Lokaltog/vim-powerline'
-" Bundle 'Lokaltog/vim-easymotion'
-Bundle 'godlygeek/csapprox'
-" Bundle 'corntrace/bufexplorer'
-Bundle 'mbbill/undotree'
-" Bundle 'myusuf3/numbers.vim'
-" Bundle 'nathanaelkane/vim-indent-guides'
+Plugin 'tpope/vim-dispatch'
+Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdtree'
+" Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'tpope/vim-surround'
+" Plugin 'AutoClose'
+Plugin 'kien/ctrlp.vim'
+Plugin 'burke/matcher'
+Plugin 'vim-scripts/sessionman.vim'
+Plugin 'matchit.zip'
+Plugin 'Lokaltog/vim-powerline'
+" Plugin 'Lokaltog/vim-easymotion'
+Plugin 'godlygeek/csapprox'
+" Plugin 'corntrace/bufexplorer'
+Plugin 'mbbill/undotree'
+" Plugin 'myusuf3/numbers.vim'
+" Plugin 'nathanaelkane/vim-indent-guides'
 
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'honza/vim-snippets'
+Plugin 'Shougo/neocomplcache'
+Plugin 'Shougo/neosnippet'
+Plugin 'honza/vim-snippets'
 
 " Color schemes
-Bundle 'spf13/vim-colors'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'spf13/vim-colors'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'altercation/vim-colors-solarized'
 
 " General Programming
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-fugitive'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'godlygeek/tabular'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'godlygeek/tabular'
 if executable('ctags')
-  Bundle 'majutsushi/tagbar'
+  Plugin 'majutsushi/tagbar'
 endif
 
 " Python
-" Bundle 'klen/python-mode'
-" Bundle 'python.vim'
-" Bundle 'python_match.vim'
-" Bundle 'pythoncomplete'
+" Plugin 'klen/python-mode'
+" Plugin 'python.vim'
+" Plugin 'python_match.vim'
+" Plugin 'pythoncomplete'
 
 " Javascript
-Bundle 'leshill/vim-json'
-Bundle 'groenewege/vim-less'
-Bundle 'pangloss/vim-javascript'
-Bundle 'briancollins/vim-jst'
+Plugin 'leshill/vim-json'
+Plugin 'groenewege/vim-less'
+Plugin 'pangloss/vim-javascript'
+Plugin 'briancollins/vim-jst'
 
 " Scala
-" Bundle 'derekwyatt/vim-scala'
-" Bundle 'derekwyatt/vim-sbt'
+" Plugin 'derekwyatt/vim-scala'
+" Plugin 'derekwyatt/vim-sbt'
 
 " HTML
-Bundle 'amirh/HTML-AutoCloseTag'
-Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
+Plugin 'amirh/HTML-AutoCloseTag'
+Plugin 'ChrisYip/Better-CSS-Syntax-for-Vim'
 
 " Ruby
-Bundle "vim-ruby/vim-ruby"
-Bundle "tpope/vim-haml"
-Bundle "tpope/vim-rails"
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-rails'
 
 " Misc Languages
-Bundle 'tpope/vim-markdown'
-" Bundle 'tpope/vim-cucumber'
-Bundle "kchmck/vim-coffee-script"
-Bundle "oscarh/vimerl"
-Bundle "vim-scripts/VimClojure"
-Bundle "jcf/vim-latex"
-" Bundle 'spf13/PIV' " PHP
-Bundle "jnwhiteh/vim-golang"
+Plugin 'tpope/vim-markdown'
+" Plugin 'tpope/vim-cucumber'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'oscarh/vimerl'
+Plugin 'vim-scripts/VimClojure'
+Plugin 'jcf/vim-latex'
+" Plugin 'spf13/PIV' " PHP
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'vim-scripts/syntaxhaskell.vim'

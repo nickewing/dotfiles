@@ -30,3 +30,12 @@ alias -g ....='../../..'
 
 alias g='git'
 alias -g gr='`git rev-parse --show-cdup`'
+
+# Ruby
+
+alias -g be='bundle exec'
+alias -g bi='bundle install'
+
+alias -g st='spring testunit'
+alias -g sr='spring rspec'
+alias -g sc='spring cucumber'
