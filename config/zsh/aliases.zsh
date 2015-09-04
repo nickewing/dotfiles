@@ -36,6 +36,15 @@ alias -g gr='`git rev-parse --show-cdup`'
 alias -g be='bundle exec'
 alias -g bi='bundle install'
 
-alias -g st='spring testunit'
-alias -g sr='spring rspec'
-alias -g sc='spring cucumber'
+alias st='spring testunit'
+alias sr='spring rspec'
+alias sc='spring cucumber'
+
+# Work
+
+alias rm_orig='find . -name "*.orig" -print0 | xargs -0 rm'
+
+alias repo_update='bundle install && be rake db:migrate db:test:prepare'
+alias test_parallel_prepare='be rake parallel:create parallel:prepare'
+alias test_parallel='be rake parallel:test; be rake parallel:features; be rake spec; notify'
+alias test_all='repo_update && test_parallel_prepare && test_parallel'

@@ -5,12 +5,16 @@ function tn() {
 
 function notify() {
   if [ $? -eq 0 ]; then
-    tn "Erfolg!" > /dev/null
-    say "Erfolg!"
+    tn "Success!" > /dev/null
+    say "Success!"
   else
-    tn "Fehler!" > /dev/null
-    say "Fehler!"
+    tn "Failed!" > /dev/null
+    say "Failed!"
   fi
 
   terminal-notifier -remove terminal-notify > /dev/null
+}
+
+function ag_replace() {
+  ag -l $1 | xargs perl -pi -E "s/$1/$2/g"
 }

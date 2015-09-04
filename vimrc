@@ -277,7 +277,7 @@ let g:syntastic_quiet_messages = {'level': 'warnings'}
 
   " " SuperTab like snippets behavior.
   " imap <silent><expr><tab> neocomplcache#sources#snippets_complete#expandable() ? "\<plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<c-e>" : "\<tab>")
-  " smap <tab> <right><plug>(neocomplcache_snippets_jump) 
+  " smap <tab> <right><plug>(neocomplcache_snippets_jump)
 
   " " Plugin key-mappings.
   " " Ctrl-k expands snippet & moves to next position
@@ -435,3 +435,16 @@ au BufNewFile,BufRead *.lfjs set filetype=lisp
 au BufRead,BufNewFile *.hamljs set filetype=haml
 au BufRead,BufNewFile *.ypp set filetype=yacc
 au! BufRead,BufNewFile *.cljs set filetype=clojure
+
+" Commands
+" ==============================================================================
+
+command! RubyNewHashSyntax :s/:\([^ ]*\)\(\s*\)=>/\1:/g
+command! RubyNewHashSyntaxAllFile :%s/:\([^ ]*\)\(\s*\)=>/\1:/g
+
+" Highlights
+" ==============================================================================
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$\| \+\ze\t/

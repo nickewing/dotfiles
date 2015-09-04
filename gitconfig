@@ -26,6 +26,8 @@
   who = shortlog -n -s --no-merges
   cleanup = !git gc && git clean -dfx && git stash clear
   cleanupall = !git remote prune origin && git gc && git clean -dfx && git stash clear
+	recent = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+	staged = diff --staged
 [merge]
 	tool = opendiff
 [push]
