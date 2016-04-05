@@ -256,6 +256,7 @@ endif
 
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_messages = {'level': 'warnings'}
+let g:syntastic_javascript_checkers = ['eshint']
 
 " neocomplcache
 " =============
@@ -435,6 +436,7 @@ au BufNewFile,BufRead *.lfjs set filetype=lisp
 au BufRead,BufNewFile *.hamljs set filetype=haml
 au BufRead,BufNewFile *.ypp set filetype=yacc
 au! BufRead,BufNewFile *.cljs set filetype=clojure
+au BufRead,BufNewFile *.nghtml set filetype=html
 
 " Commands
 " ==============================================================================

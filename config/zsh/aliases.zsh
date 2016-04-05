@@ -1,5 +1,4 @@
-
-if [ `uname` = "Darwin" ]; then # OS X specific 
+if [ `uname` = "Darwin" ]; then # OS X specific
 	alias ls='ls -Ghl '
   alias e='mvim'
 else # Non OS X
@@ -26,6 +25,8 @@ alias -g ..='..'
 alias -g ...='../..'
 alias -g ....='../../..'
 
+alias ag='ag -S --hidden --ignore-dir .git'
+
 # Git Stuff
 
 alias g='git'
@@ -36,7 +37,7 @@ alias -g gr='`git rev-parse --show-cdup`'
 alias -g be='bundle exec'
 alias -g bi='bundle install'
 
-alias st='spring testunit'
+alias st='spring rake test'
 alias sr='spring rspec'
 alias sc='spring cucumber'
 

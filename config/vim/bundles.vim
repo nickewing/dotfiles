@@ -47,8 +47,10 @@ endif
 " Javascript
 Plugin 'leshill/vim-json'
 Plugin 'groenewege/vim-less'
-Plugin 'pangloss/vim-javascript'
+" Plugin 'pangloss/vim-javascript'
+Plugin 'othree/yajs.vim'
 Plugin 'briancollins/vim-jst'
+" Plugin 'mxw/vim-jsx'
 
 " Scala
 " Plugin 'derekwyatt/vim-scala'
@@ -73,3 +75,6 @@ Plugin 'jcf/vim-latex'
 " Plugin 'spf13/PIV' " PHP
 Plugin 'jnwhiteh/vim-golang'
 Plugin 'vim-scripts/syntaxhaskell.vim'
+
+" Docker
+Plugin 'ekalinin/Dockerfile.vim'
