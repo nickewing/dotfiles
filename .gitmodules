@@ -7,9 +7,6 @@
 [submodule "vendor/oh-my-zsh"]
 	path = vendor/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule "vendor/vim/vundle"]
-	path = vendor/vim/vundle
-	url = git://github.com/gmarik/vundle.git
 [submodule "vendor/matcher"]
 	path = vendor/matcher
 	url = https://github.com/burke/matcher.git
