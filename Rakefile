@@ -71,6 +71,6 @@ task :vim_setup do
 end
 
 task :iterm2_setup do
-  system %|defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "#{SOURCE_DIR}/iterm2"|
+  system %|defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "#{SOURCE_DIR}/config/iterm2"|
   system %|defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true|
 end
