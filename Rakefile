@@ -16,7 +16,7 @@ def dot_path(file)
 end
 
 desc "Install dotfiles"
-task :install => [:link, :init_submodules, :vim_setup]
+task :install => [:link, :init_submodules, :vim_setup, :iterm2_setup]
 
 desc "Uninstall dotfiles"
 task :uninstall => [:unlink]
@@ -33,8 +33,8 @@ task :link do
 
     path = dot_path(f)
     next if File.symlink?(path)
-    
-    if File.exists?(path) 
+
+    if File.exists?(path)
       puts "#{f} already exists.  Creating backup..."
       backup = "#{path}.backup"
       if File.exists? backup
@@ -68,4 +68,9 @@ end
 task :vim_setup do
   system "vim +PluginInstall +qall"
   system "cd vendor/matcher && make"
+end
+
+task :iterm2_setup do
+  system %|defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "#{SOURCE_DIR}/iterm2"|
+  system %|defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true|
 end

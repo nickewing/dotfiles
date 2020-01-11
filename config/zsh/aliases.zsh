@@ -19,8 +19,6 @@ alias guntar='tar -zxvf'
 
 alias ip='echo "Local:" && ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2 && echo "\nPublic:" && echo `curl -s http://whatismyip.akamai.com/`'
 
-alias du='du -sh'
-
 alias -g ..='..'
 alias -g ...='../..'
 alias -g ....='../../..'
@@ -40,6 +38,8 @@ alias -g bi='bundle install'
 alias st='spring rake test'
 alias sr='spring rspec'
 alias sc='spring cucumber'
+
+alias rt='bundle exec ruby -Itest'
 
 # Work
 

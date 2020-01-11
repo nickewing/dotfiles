@@ -1,7 +1,6 @@
 " General
 Plugin 'tpope/vim-dispatch'
 Plugin 'mileszs/ack.vim'
-Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdtree'
 " Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tpope/vim-surround'
@@ -16,7 +15,7 @@ Plugin 'godlygeek/csapprox'
 " Plugin 'corntrace/bufexplorer'
 Plugin 'mbbill/undotree'
 " Plugin 'myusuf3/numbers.vim'
-" Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'bronson/vim-trailing-whitespace'
 
 Plugin 'Shougo/neocomplcache'
 Plugin 'Shougo/neosnippet'
@@ -34,6 +33,7 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
+Plugin 'jparise/vim-graphql'
 if executable('ctags')
   Plugin 'majutsushi/tagbar'
 endif
@@ -47,23 +47,28 @@ endif
 " Javascript
 Plugin 'leshill/vim-json'
 Plugin 'groenewege/vim-less'
-" Plugin 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript'
 Plugin 'othree/yajs.vim'
 Plugin 'briancollins/vim-jst'
-" Plugin 'mxw/vim-jsx'
+Plugin 'mxw/vim-jsx'
+Plugin 'leafgarland/typescript-vim'
 
 " Scala
 " Plugin 'derekwyatt/vim-scala'
 " Plugin 'derekwyatt/vim-sbt'
 
 " HTML
-Plugin 'amirh/HTML-AutoCloseTag'
+" Plugin 'amirh/HTML-AutoCloseTag'
 Plugin 'ChrisYip/Better-CSS-Syntax-for-Vim'
 
 " Ruby
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-rails'
+
+" Elixir
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'slashmili/alchemist.vim'
 
 " Misc Languages
 Plugin 'tpope/vim-markdown'
@@ -75,6 +80,8 @@ Plugin 'jcf/vim-latex'
 " Plugin 'spf13/PIV' " PHP
 Plugin 'jnwhiteh/vim-golang'
 Plugin 'vim-scripts/syntaxhaskell.vim'
+Plugin 'rhysd/vim-crystal'
+Plugin 'stevearc/vim-arduino'
 
 " Docker
 Plugin 'ekalinin/Dockerfile.vim'

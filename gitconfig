@@ -9,6 +9,7 @@
   ca = commit --amend -C HEAD
 	s  = status
 	st = stash
+	stu = stash -k -u # stash unstaged
 	d  = diff
 	a  = add
 	b  = branch

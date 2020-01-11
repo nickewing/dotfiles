@@ -3,22 +3,25 @@
 
 set nocompatible
 filetype off
-set rtp+=~/.dotfiles/vendor/vim/vundle
-call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+set shell=/bin/bash
+
+set rtp+=~/.dotfiles/vendor/vim/vundle
+call vundle#begin(expand("~/.dotfiles/vendor/vim"))
+
+Plugin 'VundleVim/Vundle.vim'
 
 source ~/.dotfiles/config/vim/bundles.vim
 
 call vundle#end()
 filetype plugin indent on
 
-" let g:bundle_names = map(copy(g:bundles), 'v:val.name')
-function! HasBundle(name)
-  "return index(g:bundle_names, a:name) != -1
-
-  return has_key(g:bundle_names, a:name)
-endfunction
+" " let g:bundle_names = map(copy(g:bundles), 'v:val.name')
+" function! HasBundle(name)
+"   "return index(g:bundle_names, a:name) != -1
+" 
+"   return has_key(g:bundle_names, a:name)
+" endfunction
 
 set rtp+=~/.dotfiles/config/vim
 
@@ -54,19 +57,19 @@ if has('cmdline_info')
   set showcmd                       " Show partial command being typed in status bar
 end
 
-if has('statusline') && !HasBundle('vim-powerline')
+" if has('statusline') && !HasBundle('vim-powerline')
   set laststatus=2
 
   " Broken down into easily includeable segments
   set statusline=%<%f\    " Filename
   set statusline+=%w%h%m%r " Options
-  if HasBundle('vim-fugitive')
+  " if HasBundle('vim-fugitive')
     set statusline+=%{fugitive#statusline()} "  Git Hotness
-  endif
+  " endif
   set statusline+=\ [%{&ff}/%Y]            " filetype
   set statusline+=\ [%{getcwd()}]          " current dir
   set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-endif
+" endif
 
 set hlsearch                      " Highlight all search matches at once
 set ignorecase                    " Ignore case when searching
@@ -86,10 +89,10 @@ set t_Co=256
 " Editing
 " ==============================================================================
 
-set showmatch    " Show matching parens
-set spell        " Turn on spell checking
-set nowrap       " Disable line wrapping
-set textwidth=80 " Hard wrap
+set showmatch     " Show matching parens
+set spell         " Turn on spell checking
+set nowrap        " Disable line wrapping
+set textwidth=120 " Hard wrap
 
 " Indention options
 set autoindent
@@ -135,11 +138,17 @@ if has("gui_running")
 
   if has("unix") && match(system("uname"),'Darwin') != -1
     set guifont=Monaco:h12
+    " set guifont=Fira\ Code:h12
+    " set guifont=Hasklig:h12
+    set macligatures
   end
 
   if has('gui_macvim')
     set transparency=5          " Make the window slightly transparent
   endif
+
+  set colorcolumn=121
+  let &colorcolumn=join(range(121,999),",")
 end
 
 " Omnicomplete
@@ -197,17 +206,17 @@ vnoremap > >gv
 " NERDTree
 " ========
 
-if HasBundle('nerdtree')
+" if HasBundle('nerdtree')
   let NERDTreeShowHidden=1
 
   noremap <silent> <Leader>n :NERDTreeToggle<CR>
   noremap <silent> <Leader><Leader> :NERDTreeFind<CR>
-endif
+" endif
 
 " NERDcommenter
 " =============
 
-if HasBundle('nerdcommenter')
+" if HasBundle('nerdcommenter')
   " Add a space before comments
   let NERDSpaceDelims = 1
   " Comment all the lines selected
@@ -217,12 +226,12 @@ if HasBundle('nerdcommenter')
 
   vmap <silent> <D-/> :call NERDComment(1, "toggle")<CR>
   nmap <silent> <D-/> :call NERDComment(0, "toggle")<CR>
-endif
+" endif
 
 " LaTeX
 " =====
 
-if HasBundle('vim-latex')
+" if HasBundle('vim-latex')
   " View program for OSX
   if has("unix") && match(system("uname"),'Darwin') != -1
     let g:Tex_ViewRule_pdf = 'open -a Skim.app'
@@ -236,20 +245,20 @@ if HasBundle('vim-latex')
   " remap to avoid collision with <C-j> mapping
   imap <C-g> <Plug>IMAP_JumpForward
   nmap <C-g> <Plug>IMAP_JumpForward
-endif
+" endif
 
 " Ctrl-P
 " ======
 
 " Also see vim/plugin/ctrlp_matcher.vim
 
-if HasBundle('ctrlp.vim')
+" if HasBundle('ctrlp.vim')
   let g:ctrlp_match_window_reversed = 0
   let g:ctrlp_map = '<leader>f'
 
   nmap <silent> <Leader>b :CtrlPBuffer<CR>
 
-endif
+" endif
 
 " Syntastic
 " =========
@@ -258,169 +267,10 @@ let g:syntastic_enable_signs=1
 let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_javascript_checkers = ['eshint']
 
-" neocomplcache
-" =============
-
-" if HasBundle('neocomplcache')
-  " let g:neocomplcache_enable_at_startup = 1
-  " let g:neocomplcache_enable_camel_case_completion = 1
-  " let g:neocomplcache_enable_smart_case = 1
-  " let g:neocomplcache_enable_underbar_completion = 1
-  " let g:neocomplcache_min_syntax_length = 3
-  " let g:neocomplcache_enable_auto_delimiter = 1
-  " let g:neocomplcache_max_list = 15
-  " let g:neocomplcache_auto_completion_start_length = 3
-  " let g:neocomplcache_force_overwrite_completefunc = 1
-  " let g:neocomplcache_snippets_dir='~/.vim/bundle/snipmate-snippets/snippets'
-
-  " " AutoComplPop like behavior.
-  " let g:neocomplcache_enable_auto_select = 0
-
-  " " SuperTab like snippets behavior.
-  " imap <silent><expr><tab> neocomplcache#sources#snippets_complete#expandable() ? "\<plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<c-e>" : "\<tab>")
-  " smap <tab> <right><plug>(neocomplcache_snippets_jump)
-
-  " " Plugin key-mappings.
-  " " Ctrl-k expands snippet & moves to next position
-  " " <CR> chooses highlighted value
-  " imap <C-k> <Plug>(neocomplcache_snippets_expand)
-  " smap <C-k> <Plug>(neocomplcache_snippets_expand)
-  " inoremap <expr><C-g> neocomplcache#undo_completion()
-  " inoremap <expr><C-l> neocomplcache#complete_common_string()
-  " inoremap <expr><CR>  neocomplcache#complete_common_string()
-
-  " " <CR>: close popup
-  " " <s-CR>: close popup and save indent.
-  " inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-  " inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-
-  " " <TAB>: completion.
-  " inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-  " inoremap <expr><s-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-  " " <C-h>, <BS>: close popup and delete backword char.
-  " inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-  " inoremap <expr><C-y> neocomplcache#close_popup()
-
-  " " Define keyword.
-  " if !exists('g:neocomplcache_keyword_patterns')
-    " let g:neocomplcache_keyword_patterns = {}
-  " endif
-  " let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-  " " Enable heavy omni completion.
-  " if !exists('g:neocomplcache_omni_patterns')
-    " let g:neocomplcache_omni_patterns = {}
-  " endif
-  " let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-  " let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-  " let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-  " let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-
-  " " For snippet_complete marker.
-  " if has('conceal')
-    " set conceallevel=2 concealcursor=i
-  " endif
-" endif
-
-
-
-
-  " let g:acp_enableAtStartup = 0
-  " let g:neocomplcache_enable_at_startup = 1
-  " let g:neocomplcache_enable_camel_case_completion = 1
-  " let g:neocomplcache_enable_smart_case = 1
-  " let g:neocomplcache_enable_underbar_completion = 1
-  " let g:neocomplcache_enable_auto_delimiter = 1
-  " let g:neocomplcache_max_list = 15
-  " let g:neocomplcache_force_overwrite_completefunc = 1
-
-  " " SuperTab like snippets behavior.
-  " imap <silent><expr><TAB> neosnippet#expandable() ?
-              " \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
-              " \ "\<C-e>" : "\<TAB>")
-  " smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
-
-  " " Define dictionary.
-  " let g:neocomplcache_dictionary_filetype_lists = {
-              " \ 'default' : '',
-              " \ 'vimshell' : $HOME.'/.vimshell_hist',
-              " \ 'scheme' : $HOME.'/.gosh_completions'
-              " \ }
-
-  " " Define keyword.
-  " if !exists('g:neocomplcache_keyword_patterns')
-      " let g:neocomplcache_keyword_patterns = {}
-  " endif
-  " let g:neocomplcache_keyword_patterns._ = '\h\w*'
-
-  " " Plugin key-mappings.
-
-  " " These two lines conflict with the default digraph mapping of <C-K>
-  " " If you prefer that functionality, add
-  " " let g:spf13_no_neosnippet_expand = 1
-  " " in your .vimrc.bundles.local file
-
-  " if !exists('g:spf13_no_neosnippet_expand')
-      " imap <C-k> <Plug>(neosnippet_expand_or_jump)
-      " smap <C-k> <Plug>(neosnippet_expand_or_jump)
-  " endif
-
-  " inoremap <expr><C-g> neocomplcache#undo_completion()
-  " inoremap <expr><C-l> neocomplcache#complete_common_string()
-  " inoremap <expr><CR> neocomplcache#complete_common_string()
-
-  " " <TAB>: completion.
-  " inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-  " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-  " " <CR>: close popup
-  " " <s-CR>: close popup and save indent.
-  " inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-  " inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-
-  " " <C-h>, <BS>: close popup and delete backword char.
-  " inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-  " inoremap <expr><C-y> neocomplcache#close_popup()
-
-  " " Enable omni completion.
-  " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-  " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-
-  " " Enable heavy omni completion.
-  " if !exists('g:neocomplcache_omni_patterns')
-      " let g:neocomplcache_omni_patterns = {}
-  " endif
-  " let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-  " let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-  " let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-  " let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-  " let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-
-  " " Use honza's snippets.
-  " let g:neosnippet#snippets_directory='~/.dotfiles/vendor/vim/vim-snippets/snippets/'
-
-  " " Enable neosnippet snipmate compatibility mode
-  " let g:neosnippet#enable_snipmate_compatibility = 1
-
-  " " For snippet_complete marker.
-  " if has('conceal')
-      " set conceallevel=2 concealcursor=i
-  " endif
-
-  " " Disable the neosnippet preview candidate window
-  " " When enabled, there can be too much visual noise
-  " " especially when splits are used.
-  " set completeopt-=preview
-
 " indent_guides
 " =============
 
-if HasBundle("vim-indent-guides")
+" if HasBundle("vim-indent-guides")
   " for some colorscheme, autocolor will not work,like 'desert','ir_black'.
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=3
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=4
@@ -428,7 +278,7 @@ if HasBundle("vim-indent-guides")
   let g:indent_guides_start_level = 2
   let g:indent_guides_guide_size = 1
   let g:indent_guides_enable_on_vim_startup = 1
-endif
+" endif
 
 " Custom File Types
 " ==============================================================================
@@ -437,6 +287,8 @@ au BufRead,BufNewFile *.hamljs set filetype=haml
 au BufRead,BufNewFile *.ypp set filetype=yacc
 au! BufRead,BufNewFile *.cljs set filetype=clojure
 au BufRead,BufNewFile *.nghtml set filetype=html
+au BufNewFile,BufRead *.es6 set filetype=javascript
+au BufNewFile,BufRead *.ngrb set filetype=ruby
 
 " Commands
 " ==============================================================================
@@ -444,9 +296,10 @@ au BufRead,BufNewFile *.nghtml set filetype=html
 command! RubyNewHashSyntax :s/:\([^ ]*\)\(\s*\)=>/\1:/g
 command! RubyNewHashSyntaxAllFile :%s/:\([^ ]*\)\(\s*\)=>/\1:/g
 
-" Highlights
-" ==============================================================================
+command -nargs=1 -complete=file E execute('silent! !mkdir -p "$(dirname "<args>")"') <Bar> e <args>
 
-highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$\| \+\ze\t/
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
