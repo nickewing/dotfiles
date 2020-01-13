@@ -1,14 +1,23 @@
+function ensure_terminal_notifier_installed() {
+  if ! [ -x "$(command -v terminal-notifier)" ]; then
+    gem install terminal-notifier > /dev/null
+  fi
+}
 
 function tn() {
-  terminal-notifier -message $1 -activate com.googlecode.iterm2 -group terminal-notify
+  ensure_terminal_notifier_installed
+
+  terminal-notifier -message $1 -activate com.googlecode.iterm2 -group terminal-notify > /dev/null
 }
 
 function notify() {
+  ensure_terminal_notifier_installed
+
   if [ $? -eq 0 ]; then
-    tn "Success!" > /dev/null
+    tn "Success!"
     say "Success!"
   else
-    tn "Failed!" > /dev/null
+    tn "Failed!"
     say "Failed!"
   fi
 
