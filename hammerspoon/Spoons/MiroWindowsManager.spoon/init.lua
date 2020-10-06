@@ -40,6 +40,7 @@ obj.license = "MIT - https://opensource.org/licenses/MIT"
 --- The sizes are expressed as dividend of the entire screen's size.
 --- For example `{2, 3, 3/2}` means that it can be 1/2, 1/3 and 2/3 of the total screen's size
 obj.sizes = {2, 3, 3/2}
+-- obj.sizes = {8/4, 8/3, 8/2, 8/1}
 
 --- MiroWindowsManager.fullScreenSizes
 --- Variable
@@ -47,6 +48,7 @@ obj.sizes = {2, 3, 3/2}
 --- The sizes are expressed as dividend of the entire screen's size.
 --- For example `{1, 4/3, 2}` means that it can be 1/1 (hence full screen), 3/4 and 1/2 of the total screen's size
 obj.fullScreenSizes = {1, 4/3, 2}
+-- obj.fullScreenSizes = {1/1, 4/3, 2/1, 4/1}
 
 --- MiroWindowsManager.GRID
 --- Variable
@@ -112,9 +114,9 @@ function obj:_nextFullScreenStep()
     end
 
     cell.w = self.GRID.w / nextSize
-    cell.h = self.GRID.h / nextSize
+    -- cell.h = self.GRID.h / nextSize
     cell.x = (self.GRID.w - self.GRID.w / nextSize) / 2
-    cell.y = (self.GRID.h - self.GRID.h / nextSize) / 2
+    -- cell.y = (self.GRID.h - self.GRID.h / nextSize) / 2
 
     hs.grid.set(win, cell, screen)
   end

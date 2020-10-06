@@ -6,7 +6,12 @@ fi
 
 HOSTNAME=`hostname`
 PAGER='less'
-EDITOR='vim'
+
+if [ `uname` = "Darwin" ]; then # OS X specific
+  EDITOR='mvim -v'
+else
+  EDITOR='vim'
+fi
 
 DISPLAY=:0
 

@@ -10,6 +10,8 @@ ZSH_CUSTOM="$HOME/.dotfiles/config/zsh"
 # time that oh-my-zsh is loaded.
 ZSH_THEME="nickewing"
 
+
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -34,7 +36,11 @@ ZSH_THEME="nickewing"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(osx git ruby rvm brew lein knife npm)
 
+
 source $ZSH/oh-my-zsh.sh
+
+HISTSIZE=999999999
+SAVEHIST=$HISTSIZE
 
 # Exports
 ################################################################################
@@ -55,6 +61,8 @@ if [[ -d "$HOME/bin" ]]; then
 fi
 
 unsetopt ALL_EXPORT
+
+source $HOME/.dotfiles/vendor/zsh-defer/zsh-defer.plugin.zsh
 
 if [[ -f "$HOME/.zshrc.local" ]]; then
   source $HOME/.zshrc.local

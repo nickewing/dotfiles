@@ -30,6 +30,10 @@ alias ag='ag -S --hidden --ignore-dir .git'
 alias g='git'
 alias -g gr='`git rev-parse --show-cdup`'
 
+# Kubernetes
+
+alias k='kubectl'
+
 # Ruby
 
 alias -g be='bundle exec'

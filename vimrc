@@ -200,6 +200,9 @@ map <silent> <C-k> :resize -10<CR>
 vnoremap < <gv
 vnoremap > >gv
 
+" Disable ex mode
+map Q <Nop>
+
 " Plug-ins
 " ==============================================================================
 
@@ -256,6 +259,15 @@ vnoremap > >gv
   let g:ctrlp_match_window_reversed = 0
   let g:ctrlp_map = '<leader>f'
 
+  " let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|log|tmp)|(\.(swp|ico|git|svn))$'
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+
+  let g:ctrlp_max_files = 0
+  " let g:ctrlp_max_depth = 40
+  " let g:ctrlp_follow_symlinks=1
+  " let g:ctrlp_path_nolim = 1
+
   nmap <silent> <Leader>b :CtrlPBuffer<CR>
 
 " endif
@@ -264,8 +276,10 @@ vnoremap > >gv
 " =========
 
 let g:syntastic_enable_signs=1
-let g:syntastic_quiet_messages = {'level': 'warnings'}
+" let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_javascript_checkers = ['eshint']
+let g:syntastic_ruby_checkers       = ['rubocop', 'mri']
+let g:syntastic_ruby_mri_exec = system("asdf which ruby")
 
 " indent_guides
 " =============
@@ -289,6 +303,10 @@ au! BufRead,BufNewFile *.cljs set filetype=clojure
 au BufRead,BufNewFile *.nghtml set filetype=html
 au BufNewFile,BufRead *.es6 set filetype=javascript
 au BufNewFile,BufRead *.ngrb set filetype=ruby
+au BufNewFile,BufRead *.yml.j2 set filetype=yaml
+au BufNewFile,BufRead *.yaml.j2 set filetype=yaml
+au BufNewFile,BufRead *.envrc set filetype=bash
+au BufNewFile,BufRead *.envrc.sample set filetype=bash
 
 " Commands
 " ==============================================================================
@@ -303,3 +321,11 @@ cnoreabbrev ag Ack
 cnoreabbrev aG Ack
 cnoreabbrev Ag Ack
 cnoreabbrev AG Ack
+set grepprg=ag\ --nogroup\ --nocolor
+
+
+" HTML Indentation settings
+" ==============================================================================
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+let g:html_indent_inctags = "address,article,aside,audio,blockquote,canvas,dd,div,dl,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,hr,main,nav,noscript,ol,output,p,pre,section,table,tfoot,ul,video"

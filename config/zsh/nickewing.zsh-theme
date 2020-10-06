@@ -5,7 +5,7 @@ autoload -U colors && colors
 PROMPT="%{$fg[cyan]%}%m:%2c%{$reset_color%} %(!.#.$) "
 
 typeset -ga precmd_functions
- 
+
 zstyle ':vcs_info:*' enable git svn
 
 zstyle ':vcs_info:*:*' actionformats ' %s[%b,%r|%a]'
@@ -14,7 +14,7 @@ zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%r'
 
 function _rprompt() {
   vcs_info
-  
+
   RPROMPT="%{$fg[green]%} ${vcs_info_msg_0_} %{$fg[cyan]%}#%h%{$reset_color%}"
 }
 
