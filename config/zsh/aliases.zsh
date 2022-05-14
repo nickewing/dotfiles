@@ -1,11 +1,12 @@
 if [ `uname` = "Darwin" ]; then # OS X specific
 	alias ls='ls -Ghl '
-  alias e='mvim'
 else # Non OS X
 	alias ls='ls -lh --color=auto'
-  alias e='gvim'
   alias open='xdg-open'
 fi
+
+alias e="$GUI_EDITOR"
+alias gui_diff=$GUI_DIFF_TOOL
 
 alias man='LC_ALL=C LANG=C man'
 alias pu='pushd '
@@ -29,6 +30,10 @@ alias ag='ag -S --hidden --ignore-dir .git'
 
 alias g='git'
 alias -g gr='`git rev-parse --show-cdup`'
+
+# Kubernetes
+
+alias k='kubectl'
 
 # Ruby
 

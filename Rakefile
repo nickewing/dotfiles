@@ -67,10 +67,9 @@ end
 
 task :vim_setup do
   system "vim +PluginInstall +qall"
-  system "cd vendor/matcher && make"
 end
 
 task :iterm2_setup do
-  system %|defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "#{SOURCE_DIR}/config/iterm2"|
-  system %|defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true|
+  puts %|defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "#{SOURCE_DIR}/config/iterm2"|
+  puts %|defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true|
 end

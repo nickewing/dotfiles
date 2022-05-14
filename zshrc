@@ -10,6 +10,8 @@ ZSH_CUSTOM="$HOME/.dotfiles/config/zsh"
 # time that oh-my-zsh is loaded.
 ZSH_THEME="nickewing"
 
+
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -29,12 +31,18 @@ ZSH_THEME="nickewing"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
+ZSH_DOTENV_FILE=.zsh-env
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(osx git ruby rvm brew lein knife npm)
+plugins=(osx git ruby rvm brew lein knife npm dotenv docker-compose)
+
 
 source $ZSH/oh-my-zsh.sh
+
+HISTSIZE=999999999
+SAVEHIST=$HISTSIZE
 
 # Exports
 ################################################################################
@@ -55,6 +63,8 @@ if [[ -d "$HOME/bin" ]]; then
 fi
 
 unsetopt ALL_EXPORT
+
+source $HOME/.dotfiles/vendor/zsh-defer/zsh-defer.plugin.zsh
 
 if [[ -f "$HOME/.zshrc.local" ]]; then
   source $HOME/.zshrc.local

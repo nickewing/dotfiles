@@ -3,10 +3,12 @@ hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
 local hyper = {"alt", "cmd"}
-local shift_hyper = {"alt", "cmd"}
+local shift_hyper = {"shift", "alt", "cmd"}
 
-hs.hotkey.bind(hyper, "V", function()
+hs.hotkey.bind(shift_hyper, "v", function()
+  -- hs.alert.show(hs.pasteboard.getContents())
   hs.eventtap.keyStrokes(hs.pasteboard.getContents())
+  -- hs.eventtap.keyStrokes("hello")
 end)
 
 -- Setup MiroWindowsManager
@@ -17,7 +19,7 @@ spoon.MiroWindowsManager:bindHotkeys({
   right = {hyper, "l"},
   down = {hyper, "j"},
   left = {hyper, "h"},
-  fullscreen = {shift_hyper, "f"}
+  fullscreen = {hyper, "f"}
 })
 
 -- Cycle current window through monitors
@@ -30,25 +32,25 @@ hs.hotkey.bind(hyper, "m", function()
   win:move(win:frame():toUnitRect(screen:frame()), screen:next(), true, 0)
 end)
 
-hs.hotkey.bind(hyper, "f", function()
-	local win = hs.window.focusedWindow()
-	local f = win:frame()
-	local max = win:screen():frame()
+-- hs.hotkey.bind(hyper, "f", function()
+	-- local win = hs.window.focusedWindow()
+	-- local f = win:frame()
+	-- local max = win:screen():frame()
 
-	local x = f
+	-- local x = f
 
-  if win:isMaximizable() then
-    x.h = max.h
-    x.w = max.w
-    x.x = ((max.w - x.w)) + max.x
-    x.y = 0
-  else
-    x.x = ((max.w - f.w) / 2) + max.x
-    x.y = ((max.h - f.h) / 2) + max.y
-  end
+  -- if win:isMaximizable() then
+    -- x.h = max.h
+    -- x.w = max.w
+    -- x.x = ((max.w - x.w)) + max.x
+    -- x.y = 0
+  -- else
+    -- x.x = ((max.w - f.w) / 2) + max.x
+    -- x.y = ((max.h - f.h) / 2) + max.y
+  -- end
 
-	win:setFrame(x)
-end)
+	-- win:setFrame(x)
+-- end)
 
 hs.hotkey.bind(hyper, "c", function()
 	local win = hs.window.focusedWindow()
@@ -71,6 +73,21 @@ hs.hotkey.bind(hyper, "c", function()
 	win:setFrame(x)
 end)
 
+hs.hotkey.bind(hyper, "v", function()
+	local win = hs.window.focusedWindow()
+	local f = win:frame()
+	local max = win:screen():frame()
+
+	local x = f
+
+  if win:isMaximizable() then
+    x.h = max.h
+    x.y = 0
+    win:setFrame(x)
+  end
+
+	win:setFrame(x)
+end)
 
 function ejectAll()
   local volumes = hs.fs.volume.allVolumes()

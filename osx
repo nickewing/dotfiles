@@ -29,10 +29,13 @@ echo "Expand print panel by default"
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 
 echo "Disable press-and-hold for keys in favor of key repeat"
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+defaults write -g ApplePressAndHoldEnabled -bool false
 
-echo "Set a shorter Delay until key repeat"
-defaults write NSGlobalDomain InitialKeyRepeat -int 0
+echo "Set a shorter delay until key repeat"
+defaults write -g InitialKeyRepeat -int 10
+
+echo "Set quick key repeat"
+defaults write -g KeyRepeat -int 2
 
 # echo "Enable AirDrop over Ethernet and on unsupported Macs running Lion"
 # defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
@@ -45,6 +48,42 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
 echo "Show the ~/Library folder"
 chflags nohidden ~/Library
+
+echo "Set dock to left side of the screen"
+defaults write com.apple.dock orientation left
+
+echo "Enable dock autohiding"
+defaults write com.apple.dock "autohide" -bool "true"
+
+echo "Clear all dock apps"
+defaults write com.apple.dock persistent-apps -array
+
+echo "Enable keyboard navigation of prompts"
+defaults write -g AppleKeyboardUIMode -int 2
+
+echo "Enable tap to click"
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+sudo defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+sudo defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+sudo defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+echo "Setup mission control bottom right hot corner"
+defaults write com.apple.dock wvous-br-corner -int 2
+defaults write com.apple.dock wvous-br-modifier -int 0
+
+echo "Set screenshot location to Pictures/Screenshots"
+mkdir ~/Pictures/Screenshots
+defaults write com.apple.screencapture "location" -string "~/Pictures/Screenshots" && killall SystemUIServer
+
+echo "Disable screenshot thumbnail"
+defaults write com.apple.screencapture "show-thumbnail" -bool "false"
+
+echo "Show the ~/Library folder"
+chflags nohidden ~/Library
+
+echo "Use list view in all Finder windows by default"
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 echo "Kill affected applications"
 for app in Finder Dock SystemUIServer; do killall "$app" >/dev/null 2>&1; done
