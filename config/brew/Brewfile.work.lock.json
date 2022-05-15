@@ -1,0 +1,39 @@
+{
+  "entries": {
+    "tap": {
+      "homebrew/cask": {
+        "revision": "2275e55b6f94525dbcbd12a3168ccfb74de2b2c4"
+      }
+    },
+    "brew": {
+      "microsoft-teams": {
+      }
+    },
+    "cask": {
+      "microsoft-teams": {
+        "version": "1.5.00.11157",
+        "options": {
+          "full_name": "microsoft-teams"
+        }
+      },
+      "microsoft-outlook": {
+        "version": "16.61.22050700",
+        "options": {
+          "full_name": "microsoft-outlook"
+        }
+      }
+    }
+  },
+  "system": {
+    "macos": {
+      "monterey": {
+        "HOMEBREW_VERSION": "3.4.11",
+        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "Homebrew/homebrew-core": "cc1837213fe95b20312b17d7eb4d948ca8e5cac7",
+        "CLT": "13.4.0.0.1.1651278267",
+        "Xcode": "13.3",
+        "macOS": "12.3.1"
+      }
+    }
+  }
+}

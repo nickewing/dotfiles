@@ -1,0 +1,20 @@
+function has_command {
+  command -v $1 >/dev/null 2>&1;
+}
+
+function install_brew {
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
+if has_command "brew"; then
+  echo "Brew already installed"
+else
+  echo "Installing brew"
+  install_brew
+fi
+
+current_dir="$(dirname $(realpath $0))"
+
+brew bundle --file "$current_dir/Brewfile.main"
+brew bundle --file "$current_dir/Brewfile.work"
+brew bundle --file "$current_dir/Brewfile.personal"

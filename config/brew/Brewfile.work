@@ -1,0 +1,4 @@
+tap "homebrew/cask"
+
+cask "microsoft-teams"
+cask "microsoft-outlook"

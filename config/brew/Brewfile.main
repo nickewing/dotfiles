@@ -1,0 +1,22 @@
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+
+brew "git"
+brew "zsh"
+brew "asdf"
+brew "the_silver_searcher"
+brew "fzf"
+brew "ripgrep"
+brew "bat"
+
+cask "hammerspoon"
+cask "slack"
+cask "signal"
+cask "iterm2"
+cask "alfred"
+cask "brave-browser"
+cask "istat-menus"
+cask "yt-music"
+cask "vimr"
+
+cask "font-meslo-lg-nerd-font" # A nerd font is required for vim-devicons.  Set font in VimR
