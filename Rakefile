@@ -1,6 +1,6 @@
 require "fileutils"
 
-SOURCE_DIR_SKIP_FILES = %[Rakefile README vendor config install.sh]
+SOURCE_DIR_SKIP_FILES = %[Rakefile README vendor config install.sh bin]
 CONFIG_DIR_LINKS = %w[nvim]
 
 HOME_DIR = ENV["HOME"]
@@ -39,7 +39,7 @@ def unlink_file(dest)
 end
 
 desc "Install dotfiles"
-task install: [:link, :init_submodules, :vim_setup, :iterm2_setup]
+task install: [:link, :init_submodules]
 
 desc "Uninstall dotfiles"
 task uninstall: [:unlink]
@@ -94,4 +94,4 @@ task :brew_install do
   system %|"#{SOURCE_DIR}/config/brew/install"|
 end
 
-task macos_setup: [:macos_write_defautls, :brew_install]
+task macos_setup: [:macos_write_defautls, :brew_install, :iterm2_setup]
