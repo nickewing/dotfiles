@@ -1,4 +1,3 @@
-emacs.d/auto-save-list
 tags
 doc/tags
 tags-ja
@@ -6,3 +5,5 @@ vim/.netrwhist
 vendor/vim/
 !vendor/vim/.gitkeep
 config/irb/bundle
+config/nvim/autoload/plugged
+!config/nvim/autoload/plugged/.gitkeep
