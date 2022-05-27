@@ -13,8 +13,17 @@ else
   install_brew
 fi
 
+echo
+
 current_dir="$(dirname $(realpath $0))"
 
+echo "Installing from Brewfile.main"
 brew bundle --file "$current_dir/Brewfile.main"
+echo
+
+echo "Installing from Brewfile.work"
 brew bundle --file "$current_dir/Brewfile.work"
+echo
+
+echo "Installing from Brewfile.personal"
 brew bundle --file "$current_dir/Brewfile.personal"

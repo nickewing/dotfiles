@@ -2,7 +2,7 @@
   "entries": {
     "tap": {
       "homebrew/cask": {
-        "revision": "2275e55b6f94525dbcbd12a3168ccfb74de2b2c4"
+        "revision": "2dc7aa9a3cba9197e139fe1e4edda4701e645a12"
       }
     },
     "cask": {
@@ -19,9 +19,15 @@
         }
       },
       "google-earth-pro": {
-        "version": "7.3.4.8573",
+        "version": "7.3.4.8642",
         "options": {
           "full_name": "google-earth-pro"
+        }
+      },
+      "discord": {
+        "version": "0.0.266",
+        "options": {
+          "full_name": "discord"
         }
       }
     }
@@ -31,10 +37,10 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.4.11",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "cc1837213fe95b20312b17d7eb4d948ca8e5cac7",
+        "Homebrew/homebrew-core": "40dcf2761ff529abdf3d90eaa7e4810f52a240f8",
         "CLT": "13.4.0.0.1.1651278267",
         "Xcode": "13.3",
-        "macOS": "12.3.1"
+        "macOS": "12.4"
       }
     }
   }

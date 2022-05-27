@@ -1,4 +1,12 @@
-tap "homebrew/cask"
+brew "direnv"
+brew "ctop"
 
+tap "homebrew/cask"
+cask "ngrok"
 cask "microsoft-teams"
 cask "microsoft-outlook"
+cask "docker"
+
+tap "mutagen-io/mutagen"
+brew "mutagen"
+brew "mutagen-compose"

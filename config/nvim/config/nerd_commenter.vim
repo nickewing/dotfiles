@@ -5,5 +5,5 @@ let NERDBlockComIgnoreEmpty = 0
 " Disable default mappings
 let NERDCreateDefaultMappings = 0
 
-vmap <silent> <leader>c :call NERDComment(1, "toggle")<CR>
-nmap <silent> <leader>c :call NERDComment(0, "toggle")<CR>
+vmap <silent> <leader>c :call nerdcommenter#Comment(1, "toggle")<CR>
+nmap <silent> <leader>c :call nerdcommenter#Comment(0, "toggle")<CR>

@@ -13,7 +13,7 @@ end)
 
 -- Setup MiroWindowsManager
 hs.loadSpoon("MiroWindowsManager")
-hs.window.animationDuration = 0.08
+hs.window.animationDuration = 0.00
 spoon.MiroWindowsManager:bindHotkeys({
   up = {hyper, "k"},
   right = {hyper, "l"},
@@ -32,61 +32,61 @@ hs.hotkey.bind(hyper, "m", function()
   win:move(win:frame():toUnitRect(screen:frame()), screen:next(), true, 0)
 end)
 
--- hs.hotkey.bind(hyper, "f", function()
-	-- local win = hs.window.focusedWindow()
-	-- local f = win:frame()
-	-- local max = win:screen():frame()
-
-	-- local x = f
-
-  -- if win:isMaximizable() then
-    -- x.h = max.h
-    -- x.w = max.w
-    -- x.x = ((max.w - x.w)) + max.x
-    -- x.y = 0
-  -- else
-    -- x.x = ((max.w - f.w) / 2) + max.x
-    -- x.y = ((max.h - f.h) / 2) + max.y
-  -- end
-
-	-- win:setFrame(x)
--- end)
-
 hs.hotkey.bind(hyper, "c", function()
 	local win = hs.window.focusedWindow()
 	local f = win:frame()
 	local max = win:screen():frame()
 
-	local x = f
-
   if win:isMaximizable() then
-    x.h = max.h
-    x.w = max.w*2/3
-    x.x = ((max.w - x.w) / 2) + max.x
-    x.y = 0
-    win:setFrame(x)
+    f.h = max.h
+    f.w = max.w*2/3
+    f.x = ((max.w - f.w) / 2) + max.x
+    f.y = 0
   else
-    x.x = ((max.w - f.w) / 2) + max.x
-    x.y = ((max.h - f.h) / 2) + max.y
+    f.x = ((max.w - f.w) / 2) + max.x
+    f.y = ((max.h - f.h) / 2) + max.y
   end
 
-	win:setFrame(x)
+	win:setFrame(f)
 end)
+
+function moveWindowRelative(moveX, moveY)
+  local moveAmount = 10;
+
+  return function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+
+    f.x = f.x + moveX * moveAmount
+    f.y = f.y + moveY * moveAmount
+    win:setFrame(f)
+  end
+end
+
+hs.hotkey.bind(shift_hyper, "l", moveWindowRelative(1, 0), nil, moveWindowRelative(1, 0))
+hs.hotkey.bind(shift_hyper, "h", moveWindowRelative(-1, 0), nil, moveWindowRelative(-1, 0))
+hs.hotkey.bind(shift_hyper, "j", moveWindowRelative(0, 1), nil, moveWindowRelative(0, 1))
+hs.hotkey.bind(shift_hyper, "k", moveWindowRelative(0, -1), nil, moveWindowRelative(0, -1))
 
 hs.hotkey.bind(hyper, "v", function()
 	local win = hs.window.focusedWindow()
 	local f = win:frame()
 	local max = win:screen():frame()
 
-	local x = f
-
   if win:isMaximizable() then
-    x.h = max.h
-    x.y = 0
-    win:setFrame(x)
+    f.h = max.h
+    f.y = 0
+    win:setFrame(f)
   end
+end)
 
-	win:setFrame(x)
+-- Add hotkeys to emulate media next and previous keys
+hs.hotkey.bind({"shift", "ctrl"}, "n", function()
+  hs.eventtap.event.newSystemKeyEvent("NEXT", true):post()
+end)
+
+hs.hotkey.bind({"shift", "ctrl"}, "p", function()
+  hs.eventtap.event.newSystemKeyEvent("PREVIOUS", true):post()
 end)
 
 function ejectAll()

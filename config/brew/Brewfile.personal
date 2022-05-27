@@ -1,5 +1,7 @@
 tap "homebrew/cask"
 
+cask "discord"
+
 cask "topnotch"
 cask "adobe-creative-cloud"
 cask "google-earth-pro"

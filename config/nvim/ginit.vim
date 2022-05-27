@@ -3,6 +3,7 @@ let g:using_neovim_qt = exists("*GuiName") && GuiName() == 'nvim-qt'
 let g:using_gnvim = exists("g:gnvim")
 let g:using_macvim = has('gui_macvim')
 let g:using_other_gui = has('gui_running')
+let g:using_vimr = has('gui_vimr')
 
 if g:using_neovim_gtk
   " call rpcnotify(1, 'Gui', 'Font', 'Hack Bold 9')
