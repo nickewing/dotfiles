@@ -41,6 +41,8 @@ end
 desc "Install dotfiles"
 task install: [:link, :init_submodules]
 
+task install_macos: [:install, :macos_write_defautls, :iterm2_setup, :brew_install]
+
 desc "Uninstall dotfiles"
 task uninstall: [:unlink]
 
@@ -79,9 +81,13 @@ task :vim_setup do
   system "vim +PluginInstall +qall"
 end
 
+task :nvim_setup do
+  system "nvim +PlugInstall +qall"
+end
+
 task :iterm2_setup do
-  puts %|defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "#{SOURCE_DIR}/config/iterm2"|
-  puts %|defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true|
+  system %|defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "#{SOURCE_DIR}/config/iterm2"|
+  system %|defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true|
 end
 
 task :macos_write_defautls do
@@ -93,5 +99,3 @@ task :brew_install do
   system %|chmod u+x "#{SOURCE_DIR}/config/brew/install"|
   system %|"#{SOURCE_DIR}/config/brew/install"|
 end
-
-task macos_setup: [:macos_write_defautls, :brew_install, :iterm2_setup]

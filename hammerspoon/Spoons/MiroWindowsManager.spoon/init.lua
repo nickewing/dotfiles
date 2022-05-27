@@ -39,16 +39,19 @@ obj.license = "MIT - https://opensource.org/licenses/MIT"
 --- The sizes that the window can have. 
 --- The sizes are expressed as dividend of the entire screen's size.
 --- For example `{2, 3, 3/2}` means that it can be 1/2, 1/3 and 2/3 of the total screen's size
-obj.sizes = {2, 3, 3/2}
--- obj.sizes = {8/4, 8/3, 8/2, 8/1}
+-- obj.sizes = {2, 3, 4, 5, 4/3, 3/2}
+-- obj.sizes = {5/4, 4/3, 2, 3, 4}
+-- obj.sizes = {4, 2, 5/4}
+obj.sizes = {4/3, 3/2, 2, 4}
 
 --- MiroWindowsManager.fullScreenSizes
 --- Variable
 --- The sizes that the window can have in full-screen. 
 --- The sizes are expressed as dividend of the entire screen's size.
 --- For example `{1, 4/3, 2}` means that it can be 1/1 (hence full screen), 3/4 and 1/2 of the total screen's size
-obj.fullScreenSizes = {1, 4/3, 2}
--- obj.fullScreenSizes = {1/1, 4/3, 2/1, 4/1}
+-- obj.fullScreenSizes = {1, 4/3, 2}
+-- obj.fullScreenSizes = {1, 5/4}
+obj.fullScreenSizes = {1/1, 4/3, 2/1, 4/1}
 
 --- MiroWindowsManager.GRID
 --- Variable

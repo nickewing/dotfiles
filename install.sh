@@ -1,3 +1,5 @@
+#!/bin/bash
+
 install_dir="$HOME/.dotfiles"
 repository="https://github.com/nickewing/dotfiles.git"
 
@@ -16,7 +18,7 @@ function check_bin_in_path {
   fi
 }
 
-function ensure_all_packages_installed {
+function check_required_bins_in_path {
   bin="git ruby rake"
 
   for package in $bin; do
@@ -24,7 +26,7 @@ function ensure_all_packages_installed {
   done
 }
 
-ensure_all_packages_installed
+check_required_bins_in_path
 
 # clone repo
 if [ -d $install_dir ]; then

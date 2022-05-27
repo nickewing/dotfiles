@@ -6,6 +6,7 @@ brew "fzf"
 brew "ripgrep"
 brew "bat"
 brew "htop"
+brew "terminal-notifier"
 
 tap "homebrew/cask"
 cask "1password"
