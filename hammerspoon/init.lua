@@ -89,6 +89,10 @@ hs.hotkey.bind({"shift", "ctrl"}, "p", function()
   hs.eventtap.event.newSystemKeyEvent("PREVIOUS", true):post()
 end)
 
+hs.hotkey.bind({"shift", "ctrl"}, "SPACE", function()
+  hs.eventtap.event.newSystemKeyEvent("PLAY", true):post()
+end)
+
 function ejectAll()
   local volumes = hs.fs.volume.allVolumes()
   local log = hs.logger.new("sleep", "info")

@@ -2,13 +2,13 @@
   "entries": {
     "tap": {
       "homebrew/cask": {
-        "revision": "2dc7aa9a3cba9197e139fe1e4edda4701e645a12"
+        "revision": "c858075186c8197cbb6eefe992965419540ab125"
       },
       "homebrew/cask-fonts": {
-        "revision": "43e1a1a4f2702fe4283131a1a154b728d637ef55"
+        "revision": "d80c7059620433e7d3230fbb6f513b8382aa6144"
       },
       "homebrew/cask-drivers": {
-        "revision": "8e1a886d384c093e92d93f508167dae40b7aa69a"
+        "revision": "065cf5599dfc1e237296564321a2bfb73789c3ac"
       },
       "mutagen-io/mutagen": {
         "revision": "4e7013131aa6c230394121959c35702a9836d720"
@@ -468,7 +468,7 @@
         }
       },
       "firefox": {
-        "version": "100.0.2",
+        "version": "101.0",
         "options": {
           "full_name": "firefox"
         }
@@ -496,6 +496,12 @@
         "options": {
           "full_name": "logitech-camera-settings"
         }
+      },
+      "synology-drive": {
+        "version": "3.1.0,12923",
+        "options": {
+          "full_name": "synology-drive"
+        }
       }
     }
   },
@@ -504,7 +510,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.4.11",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "070c53258ca39c0290c998eec70069e0c63a52a7",
+        "Homebrew/homebrew-core": "d2e119b68d8818af350a52680e4f9e09c9b87bb5",
         "CLT": "13.4.0.0.1.1651278267",
         "Xcode": "13.3",
         "macOS": "12.4"
