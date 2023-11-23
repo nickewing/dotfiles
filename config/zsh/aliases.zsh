@@ -43,7 +43,7 @@ alias st='spring rake test'
 alias sr='spring rspec'
 alias sc='spring cucumber'
 
-alias rt='bundle exec ruby -Itest'
+alias rt='bin/rails test'
 
 # Work
 

@@ -39,19 +39,14 @@ obj.license = "MIT - https://opensource.org/licenses/MIT"
 --- The sizes that the window can have. 
 --- The sizes are expressed as dividend of the entire screen's size.
 --- For example `{2, 3, 3/2}` means that it can be 1/2, 1/3 and 2/3 of the total screen's size
--- obj.sizes = {2, 3, 4, 5, 4/3, 3/2}
--- obj.sizes = {5/4, 4/3, 2, 3, 4}
--- obj.sizes = {4, 2, 5/4}
-obj.sizes = {4/3, 3/2, 2, 4}
+obj.sizes = {2, 3, 3/2}
 
 --- MiroWindowsManager.fullScreenSizes
 --- Variable
 --- The sizes that the window can have in full-screen. 
 --- The sizes are expressed as dividend of the entire screen's size.
 --- For example `{1, 4/3, 2}` means that it can be 1/1 (hence full screen), 3/4 and 1/2 of the total screen's size
--- obj.fullScreenSizes = {1, 4/3, 2}
--- obj.fullScreenSizes = {1, 5/4}
-obj.fullScreenSizes = {1/1, 4/3, 2/1, 4/1}
+obj.fullScreenSizes = {1, 4/3, 2}
 
 --- MiroWindowsManager.GRID
 --- Variable
@@ -117,11 +112,21 @@ function obj:_nextFullScreenStep()
     end
 
     cell.w = self.GRID.w / nextSize
-    -- cell.h = self.GRID.h / nextSize
+    cell.h = self.GRID.h / nextSize
     cell.x = (self.GRID.w - self.GRID.w / nextSize) / 2
-    -- cell.y = (self.GRID.h - self.GRID.h / nextSize) / 2
+    cell.y = (self.GRID.h - self.GRID.h / nextSize) / 2
 
     hs.grid.set(win, cell, screen)
+  end
+end
+
+function obj:_moveNextScreenStep()
+  if hs.window.focusedWindow() then
+    local win = hs.window.frontmostWindow()
+    local id = win:id()
+    local screen = win:screen()
+
+    win:move(win:frame():toUnitRect(screen:frame()), screen:next(), true, 0)
   end
 end
 
@@ -153,6 +158,7 @@ end
 ---   * down: for the down action (usually {hyper, "down"})
 ---   * left: for the left action (usually {hyper, "left"})
 ---   * fullscreen: for the full-screen action (e.g. {hyper, "f"})
+---   * nextscreen: for the multi monitor next screen action (e.g. {hyper, "n"})
 ---
 --- A configuration example can be:
 --- ```
@@ -163,6 +169,7 @@ end
 ---   down = {hyper, "down"},
 ---   left = {hyper, "left"},
 ---   fullscreen = {hyper, "f"}
+---   nextscreen = {hyper, "n"}
 --- })
 --- ```
 function obj:bindHotkeys(mapping)
@@ -227,6 +234,10 @@ function obj:bindHotkeys(mapping)
 
   hs.hotkey.bind(mapping.fullscreen[1], mapping.fullscreen[2], function ()
     self:_nextFullScreenStep()
+  end)
+
+  hs.hotkey.bind(mapping.nextscreen[1], mapping.nextscreen[2], function ()
+    self:_moveNextScreenStep()
   end)
 
 end

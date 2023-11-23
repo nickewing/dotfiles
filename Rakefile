@@ -41,7 +41,13 @@ end
 desc "Install dotfiles"
 task install: [:link, :init_submodules]
 
-task install_macos: [:install, :macos_write_defautls, :iterm2_setup, :brew_install]
+task install_macos: [
+  :install,
+  :macos_install_rosetta,
+  :macos_write_defautls,
+  :iterm2_setup,
+  :brew_install
+]
 
 desc "Uninstall dotfiles"
 task uninstall: [:unlink]
@@ -93,6 +99,10 @@ end
 task :macos_write_defautls do
   system %|chmod u+x "#{SOURCE_DIR}/config/macos/write_defaults"|
   system %|"#{SOURCE_DIR}/config/macos/write_defaults"|
+end
+
+task :macos_install_rosetta do
+  system %|sudo softwareupdate --install-rosetta|
 end
 
 task :brew_install do

@@ -6,20 +6,23 @@ local hyper = {"alt", "cmd"}
 local shift_hyper = {"shift", "alt", "cmd"}
 
 hs.hotkey.bind(shift_hyper, "v", function()
-  -- hs.alert.show(hs.pasteboard.getContents())
   hs.eventtap.keyStrokes(hs.pasteboard.getContents())
-  -- hs.eventtap.keyStrokes("hello")
 end)
 
--- Setup MiroWindowsManager
-hs.loadSpoon("MiroWindowsManager")
 hs.window.animationDuration = 0.00
-spoon.MiroWindowsManager:bindHotkeys({
+
+hs.loadSpoon("MiroWindowsManager")
+window_manager = spoon.MiroWindowsManager 
+window_manager.sizes = {1, 4/3, 3/2, 2, 4}
+window_manager.fullScreenSizes = {1}
+
+window_manager:bindHotkeys({
   up = {hyper, "k"},
   right = {hyper, "l"},
   down = {hyper, "j"},
   left = {hyper, "h"},
-  fullscreen = {hyper, "f"}
+  fullscreen = {hyper, "f"},
+  nextscreen = {hyper, "n"},
 })
 
 -- Cycle current window through monitors
@@ -50,7 +53,7 @@ hs.hotkey.bind(hyper, "c", function()
 	win:setFrame(f)
 end)
 
-function moveWindowRelative(moveX, moveY)
+local function moveWindowRelative(moveX, moveY)
   local moveAmount = 10;
 
   return function()
@@ -93,23 +96,28 @@ hs.hotkey.bind({"shift", "ctrl"}, "SPACE", function()
   hs.eventtap.event.newSystemKeyEvent("PLAY", true):post()
 end)
 
-function ejectAll()
-  local volumes = hs.fs.volume.allVolumes()
-  local log = hs.logger.new("sleep", "info")
+-- local function ejectAll()
+--   local volumes = hs.fs.volume.allVolumes()
+--   local log = hs.logger.new("sleep", "info")
+--
+--   for path, volume in pairs(volumes) do
+--     if not volume["NSURLVolumeIsInternalKey"] then
+--       log.i("Ejecting " .. path)
+--       hs.fs.volume.eject(path)
+--     end
+--   end
+-- end
 
-  for path, volume in pairs(volumes) do
-    if not volume["NSURLVolumeIsInternalKey"] then
-      log.i("Ejecting " .. path)
-      hs.fs.volume.eject(path)
-    end
-  end
-end
+-- local function sleepWatcher(eventType)
+--   if eventType == hs.caffeinate.watcher.systemWillSleep then
+--     ejectAll()
+--   end
+-- end
+--
+-- watcher = hs.caffeinate.watcher.new(ejectAll)
+-- watcher:start()
 
-function sleepWatcher(eventType)
-  if eventType == hs.caffeinate.watcher.systemWillSleep then
-    ejectAll()
-  end
-end
 
-watcher = hs.caffeinate.watcher.new(ejectAll)
-watcher:start()
+hs.loadSpoon("Caffeine")
+spoon.Caffeine:bindHotkeys({ toggle = { shift_hyper, "c" } })
+spoon.Caffeine:start()

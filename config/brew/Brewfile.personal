@@ -1,7 +1,14 @@
+brew "exiftool"
+
 tap "homebrew/cask"
 
 cask "discord"
 
-cask "topnotch"
+# cask "topnotch" # Hide MBP notch
+
 cask "adobe-creative-cloud"
 cask "google-earth-pro"
+
+cask "tripmode"
+cask "nordvpn"
+cask "parcel"

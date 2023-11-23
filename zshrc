@@ -29,7 +29,18 @@ ZSH_DOTENV_FILE=.zsh-env
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(macos git ruby asdf brew npm dotenv docker-compose)
+plugins=(macos git ruby npm dotenv docker-compose fzf)
+# plugins=(macos git ruby asdf brew npm dotenv docker-compose fzf)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.dotfiles/vendor/zsh-defer/zsh-defer.plugin.zsh
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/nick/.asdf/installs/nodejs/16.15.1/.npm/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/nick/.asdf/installs/nodejs/16.15.1/.npm/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/nick/.asdf/installs/nodejs/16.15.1/.npm/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/nick/.asdf/installs/nodejs/16.15.1/.npm/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/nick/.asdf/installs/nodejs/16.15.1/.npm/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/nick/.asdf/installs/nodejs/16.15.1/.npm/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
