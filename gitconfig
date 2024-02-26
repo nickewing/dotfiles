@@ -1,8 +1,8 @@
 [user]
 	name = Nick Ewing
 	email = nick@nickewing.net
-[color]
-	ui = always
+; [color]
+; 	ui = always
 [alias]
 	c   = commit
 	co  = checkout

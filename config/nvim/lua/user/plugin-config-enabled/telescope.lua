@@ -42,16 +42,16 @@ local function config()
   keymap.set("n", "<leader>*", live_grep_args_shortcuts.grep_word_under_cursor, { desc = "Telescope word under cursor" })
   keymap.set("v", "<leader>*", live_grep_args_shortcuts.grep_visual_selection, { desc = "Telescope word under cursor" })
 
-  vim.api.nvim_create_user_command("Ack", function(args)
-    local default_text = args.fargs[1]
-    -- TODO: support multiple directories later, maybe
-    local search_dirs = {args.fargs[2]}
-
-    telescope.extensions.live_grep_args.live_grep_args({
-      default_text = default_text,
-      search_dirs = search_dirs
-    })
-  end, { desc = "Grep in Telescope", nargs = "*" })
+  -- vim.api.nvim_create_user_command("Ack", function(args)
+  --   local default_text = args.fargs[1]
+  --   -- TODO: support multiple directories later, maybe
+  --   local search_dirs = {args.fargs[2]}
+  --
+  --   telescope.extensions.live_grep_args.live_grep_args({
+  --     default_text = default_text,
+  --     search_dirs = search_dirs
+  --   })
+  -- end, { desc = "Grep in Telescope", nargs = "*" })
 
   -- require("telescope").extensions.live_grep_args.live_grep_args()
 end

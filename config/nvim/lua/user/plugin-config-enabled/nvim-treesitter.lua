@@ -71,11 +71,6 @@ local function config()
       },
     },
 
-    -- Plugin "JoosepAlviste/nvim-ts-context-commentstring"
-    context_commentstring = {
-      enable = true,
-    },
-
     -- Plugin "windwp/nvim-ts-autotag"
     autotag = {
       enable = true,
@@ -108,6 +103,11 @@ local function config()
     },
 
   })
+
+  vim.g.skip_ts_context_commentstring_module = true
+
+  -- Plugin "JoosepAlviste/nvim-ts-context-commentstring"
+  require('ts_context_commentstring').setup({})
 end
 
 return {

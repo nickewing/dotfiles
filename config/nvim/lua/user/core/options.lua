@@ -39,7 +39,8 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-local mapleader = ","
+-- local mapleader = ","
+local mapleader = " "
 vim.g.mapleader = mapleader
 vim.g.maplocalleader = mapleader
 

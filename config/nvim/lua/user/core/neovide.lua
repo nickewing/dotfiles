@@ -19,12 +19,15 @@ if vim.g.neovide then
   vim.keymap.set("n", "<D-w>", "<cmd>:q<CR>")
   vim.keymap.set("t", "<D-w>", [[<C-\><C-N><cmd>:q<CR>]])
 
-  -- This should be <S-D-]> but there is a bug in Neovide preventing the use of
-  -- shifted mappings with special characters so this matches for both <S-D-]> and <D-]>
-  vim.keymap.set("n", "<D-]>", "<cmd>:tabnext<CR>")
-  vim.keymap.set("t", "<D-]>", [[<C-\><C-N><cmd>:tabnext<CR>]])
-  vim.keymap.set("n", "<D-[>", "<cmd>:tabprevious<CR>")
-  vim.keymap.set("t", "<D-[>", [[<C-\><C-N><cmd>:tabprevious<CR>]])
+  vim.keymap.set("n", "<D-}>", "<cmd>:tabnext<CR>")
+  vim.keymap.set("t", "<D-}>", [[<C-\><C-N><cmd>:tabnext<CR>]])
+  vim.keymap.set("n", "<D-{>", "<cmd>:tabprevious<CR>")
+  vim.keymap.set("t", "<D-{>", [[<C-\><C-N><cmd>:tabprevious<CR>]])
+
+  vim.keymap.set("n", "<D-]>", "<cmd>:winc w<CR>")
+  vim.keymap.set("t", "<D-]>", [[<C-\><C-N><cmd>:winc w<CR>]])
+  vim.keymap.set("n", "<D-[>", "<cmd>:winc W<CR>")
+  vim.keymap.set("t", "<D-[>", [[<C-\><C-N><cmd>:winc W<CR>]])
 
   vim.keymap.set("n", "<D-t>", "<cmd>:tabnew<CR>")
   vim.keymap.set("t", "<D-t>", [[<C-\><C-N><cmd>:tabnew<CR>]])

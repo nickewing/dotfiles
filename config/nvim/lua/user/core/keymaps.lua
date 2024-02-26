@@ -45,10 +45,19 @@ keymap.set("n", "<leader>bb", "<cmd>b#<CR>")
 
 vim.cmd("cnoreabbrev git Git")
 
-vim.cmd("cnoreabbrev ag Ack")
-vim.cmd("cnoreabbrev aG Ack")
-vim.cmd("cnoreabbrev Ag Ack")
-vim.cmd("cnoreabbrev AG Ack")
+-- vim.cmd("cnoreabbrev ag Ack")
+-- vim.cmd("cnoreabbrev aG Ack")
+-- vim.cmd("cnoreabbrev Ag Ack")
+-- vim.cmd("cnoreabbrev AG Ack")
+
+vim.cmd("cnoreabbrev ag GrepperRg")
+vim.cmd("cnoreabbrev aG GrepperRg")
+vim.cmd("cnoreabbrev Ag GrepperRg")
+vim.cmd("cnoreabbrev AG GrepperRg")
+vim.cmd("cnoreabbrev Rg GrepperRg")
+vim.cmd("cnoreabbrev rg GrepperRg")
+vim.cmd("cnoreabbrev Ack GrepperRg")
+vim.cmd("cnoreabbrev ack GrepperRg")
 
 
 function _G.set_terminal_keymaps()

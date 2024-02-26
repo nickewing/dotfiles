@@ -2,8 +2,8 @@
 hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
-local hyper = {"alt", "cmd"}
-local shift_hyper = {"shift", "alt", "cmd"}
+local hyper = {"ctrl", "cmd"}
+local shift_hyper = {"shift", "ctrl", "cmd"}
 
 hs.hotkey.bind(shift_hyper, "v", function()
   hs.eventtap.keyStrokes(hs.pasteboard.getContents())

@@ -1,7 +1,7 @@
 require "fileutils"
 
 SOURCE_DIR_SKIP_FILES = %[Rakefile README vendor config install.sh bin]
-CONFIG_DIR_LINKS = %w[nvim]
+CONFIG_DIR_LINKS = %w[nvim fish]
 
 HOME_DIR = ENV["HOME"]
 HOME_CONFIG_DIR = File.join(HOME_DIR, ".config")

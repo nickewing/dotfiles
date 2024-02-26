@@ -24,10 +24,10 @@ local function default_on_attach(client, bufnr)
   keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
   opts.desc = "See available code actions"
-  keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
+  keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
   opts.desc = "Smart rename"
-  keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
+  keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts) -- smart rename
 
   opts.desc = "Show buffer diagnostics"
   keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
@@ -45,10 +45,42 @@ local function default_on_attach(client, bufnr)
   keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
   opts.desc = "Restart LSP"
-  keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+  keymap.set("n", "<leader>lrs", ":LspRestart<CR>", opts)
 
-  opts.desc = "Restart LSP"
-  vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, opts)
+  opts.desc = "Format file"
+  vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
+
+  opts.desc = "Remove unsed"
+  vim.keymap.set(
+    "n",
+    "<leader>lu",
+    function()
+      vim.lsp.buf.code_action({
+        apply = true,
+        context = {
+          only = { "source.removeUnused.ts" },
+          diagnostics = {},
+        },
+      })
+    end,
+    opts
+  )
+
+  opts.desc = "Organize imports"
+  vim.keymap.set(
+    "n",
+    "<leader>li",
+    function()
+      vim.lsp.buf.code_action({
+        apply = true,
+        context = {
+          only = { "source.organizeImports.ts" },
+          diagnostics = {},
+        },
+      })
+    end,
+    opts
+  )
 
   autocmd({ 'BufEnter', 'BufWritePre', 'CursorHold' }, {
     buffer = bufnr,
@@ -76,48 +108,21 @@ local function default_on_attach(client, bufnr)
   })
 end
 
-local function tsserver_on_attach(client, buffer)
-  default_on_attach(client, buffer)
-
-  vim.keymap.set(
-    "n",
-    "<leader>cr",
-    function()
-      vim.lsp.buf.code_action({
-        apply = true,
-        context = {
-          only = { "source.removeUnused.ts" },
-          diagnostics = {},
-        },
-      })
-    end
-  )
-
-  vim.keymap.set(
-    "n",
-    "<leader>co",
-    function()
-      vim.lsp.buf.code_action({
-        apply = true,
-        context = {
-          only = { "source.organizeImports.ts" },
-          diagnostics = {},
-        },
-      })
-    end
-  )
-end
+-- local function default_on_attach_plus_auto_format(client, buffer)
+--   default_on_attach(client, buffer)
+--
+--   augroup('LspFormat', { clear = true })
+--   autocmd('BufWritePre', {
+--     group = 'LspFormat',
+--     callback = function()
+--       vim.lsp.buf.format()
+--     end
+--   })
+-- end
 
 local function default_on_attach_plus_auto_format(client, buffer)
+  require("lsp-format").on_attach(client, buffer)
   default_on_attach(client, buffer)
-
-  augroup('LspFormat', { clear = true })
-  autocmd('BufWritePre', {
-    group = 'LspFormat',
-    callback = function()
-      vim.lsp.buf.format()
-    end
-  })
 end
 
 local function config()
@@ -137,21 +142,26 @@ local function config()
   -- local flags = { debounce_text_changes = 150 }
   local flags = {}
 
-  lspconfig["angularls"].setup {
-    capabilities = capabilities,
-    on_attach = default_on_attach,
-    flags = flags
-  }
-
   lspconfig["html"].setup({
     capabilities = capabilities,
     on_attach = default_on_attach,
     flags = flags
   })
 
+  lspconfig["jsonls"].setup({
+    capabilities = capabilities,
+    on_attach = default_on_attach_plus_auto_format
+  })
+
+  lspconfig["angularls"].setup {
+    capabilities = capabilities,
+    on_attach = default_on_attach,
+    flags = flags
+  }
+
   lspconfig["tsserver"].setup({
     capabilities = capabilities,
-    on_attach = tsserver_on_attach
+    on_attach = default_on_attach_plus_auto_format
   })
 
   lspconfig["eslint"].setup({
@@ -213,6 +223,7 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
+    "lukas-reineke/lsp-format.nvim",
   },
   config = config
 }

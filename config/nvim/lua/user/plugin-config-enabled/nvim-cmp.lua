@@ -74,12 +74,12 @@ local function config()
         }
       }, -- text within current buffer
       { name = "path" }, -- file system paths
-      { name = 'nvim_lua' },
-      {
-        name = "rg",
-        -- Try it when you feel cmp performance is poor
-        -- keyword_length = 3
-      },
+      -- { name = 'nvim_lua' },
+      -- {
+      --   name = "rg",
+      --   -- Try it when you feel cmp performance is poor
+      --   -- keyword_length = 3
+      -- },
     }),
 
     -- configure lspkind for vs-code like pictograms in completion menu
@@ -127,7 +127,7 @@ return {
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
     "onsails/lspkind.nvim", -- vs-code like pictograms
-    "lukas-reineke/cmp-rg",
+    -- "lukas-reineke/cmp-rg",
   },
   config = config
 }
