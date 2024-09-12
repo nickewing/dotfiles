@@ -4,7 +4,7 @@ if status is-interactive
 
   alias ls="ls -Ghl"
   alias po=prevd
-  alias e=neovide
+  alias e="neovide --fork"
 
   alias rt='bin/rails test'
 end

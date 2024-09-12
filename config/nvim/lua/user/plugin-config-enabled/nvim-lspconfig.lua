@@ -153,11 +153,11 @@ local function config()
     on_attach = default_on_attach_plus_auto_format
   })
 
-  lspconfig["angularls"].setup {
-    capabilities = capabilities,
-    on_attach = default_on_attach,
-    flags = flags
-  }
+  -- lspconfig["angularls"].setup {
+  --   capabilities = capabilities,
+  --   on_attach = default_on_attach,
+  --   flags = flags
+  -- }
 
   lspconfig["tsserver"].setup({
     capabilities = capabilities,
@@ -203,12 +203,12 @@ local function config()
   --   flags = flags
   -- })
 
-  lspconfig["ruby_ls"].setup({
-    cmd = { "bundle", "exec", "ruby-lsp" },
-    capabilities = capabilities,
-    on_attach = default_on_attach_plus_auto_format,
-    flags = flags
-  })
+  -- lspconfig["ruby-lsp"].setup({
+  --   cmd = { "bundle", "exec", "ruby-lsp" },
+  --   capabilities = capabilities,
+  --   on_attach = default_on_attach_plus_auto_format,
+  --   flags = flags
+  -- })
 
   lspconfig["rust_analyzer"].setup({
     capabilities = capabilities,

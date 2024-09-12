@@ -86,17 +86,6 @@ local function config()
       enable = true,
     },
 
-    -- Plugin "HiPhish/nvim-ts-rainbow2"
-    rainbow = {
-      enable = true,
-      -- list of languages you want to disable the plugin for
-      disable = {},
-      -- Which query to use for finding delimiters
-      query = 'rainbow-parens',
-      -- Highlight the entire buffer all at once
-      strategy = require('ts-rainbow').strategy.global,
-    },
-
     -- Plugin "andymass/vim-matchup"
     matchup = {
       enable = true,
@@ -117,7 +106,6 @@ return {
   dependencies = {
     "windwp/nvim-ts-autotag",
     "RRethy/nvim-treesitter-endwise",
-    "HiPhish/nvim-ts-rainbow2",
     "nvim-treesitter/playground",
     "JoosepAlviste/nvim-ts-context-commentstring",
     "andymass/vim-matchup",

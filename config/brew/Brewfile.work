@@ -1,7 +1,6 @@
 brew "direnv"
 brew "ctop"
 brew "openvpn"
-brew "aws-elasticbeanstalk"
 
 tap "homebrew/cask"
 cask "ngrok"

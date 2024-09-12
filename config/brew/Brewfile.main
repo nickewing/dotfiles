@@ -1,5 +1,6 @@
 brew "git"
 brew "zsh"
+brew "fish"
 brew "asdf"
 brew "the_silver_searcher"
 brew "fzf"
@@ -32,8 +33,8 @@ cask "standard-notes"
 
 cask "aldente" # Battery charge limiter
 cask "bartender" # Menu bar manager
-cask "bettermouse"
-cask "caffeine"
+# cask "bettermouse"
+# cask "caffeine"
 
 tap "homebrew/cask-fonts"
 # A nerd font is required for vim-devicons.  Set font in VimR

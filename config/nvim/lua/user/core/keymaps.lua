@@ -59,6 +59,8 @@ vim.cmd("cnoreabbrev rg GrepperRg")
 vim.cmd("cnoreabbrev Ack GrepperRg")
 vim.cmd("cnoreabbrev ack GrepperRg")
 
+vim.cmd("cnoreabbrev Gbl Git blame")
+
 
 function _G.set_terminal_keymaps()
   local opts = {buffer = 0}

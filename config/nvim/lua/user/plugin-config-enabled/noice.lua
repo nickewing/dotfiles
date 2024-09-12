@@ -45,5 +45,7 @@ return {
     --   If not available, we use `mini` as the fallback
     "rcarriga/nvim-notify",
   },
-  config = config
+  config = config,
+  -- NOTE: pinned due to https://github.com/folke/noice.nvim/issues/931
+  tag = "v4.4.7"
 }

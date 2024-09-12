@@ -43,7 +43,7 @@ task install: [:link, :init_submodules]
 
 task install_macos: [
   :install,
-  :macos_install_rosetta,
+  # :macos_install_rosetta,
   :macos_write_defautls,
   :iterm2_setup,
   :brew_install
@@ -85,10 +85,6 @@ end
 
 task :vim_setup do
   system "vim +PluginInstall +qall"
-end
-
-task :nvim_setup do
-  system "nvim +PlugInstall +qall"
 end
 
 task :iterm2_setup do

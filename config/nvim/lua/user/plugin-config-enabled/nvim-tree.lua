@@ -108,7 +108,6 @@ local function config()
   })
 
   vim.api.nvim_set_keymap('n', '<Leader>n', ":NvimTreeToggle<CR>", { noremap = true, silent = true });
-  vim.api.nvim_set_keymap('n', '<Leader><Leader>', ":NvimTreeFindFile<CR>", { noremap = true, silent = true });
 
   local api = require('nvim-tree.api')
   api.events.subscribe(api.events.Event.TreeOpen, function ()
