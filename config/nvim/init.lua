@@ -1,8 +1,6 @@
-require "user.core.options"
-require "user.core.plugins"
-require "user.core.filetypes"
-require "user.core.keymaps"
-require "user.core.neovide"
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
 
-require "user.misc.qf-format"
-require "user.misc.toggleterm-rails-tests"
+require("config.misc.filetypes")
+require("config.misc.neovide")
+require("config.misc.toggleterm-rails-tests")

@@ -1,3 +1,0 @@
-return {
-  "TaDaa/vimade"
-}
