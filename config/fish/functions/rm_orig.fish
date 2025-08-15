@@ -1,3 +1,3 @@
 function rm_orig
-  rg --files | rg '\.orig' | xargs rm
+  gr && rg --files | rg '\.orig' | xargs rm && po
 end
