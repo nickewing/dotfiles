@@ -6,3 +6,4 @@ vim.g.snacks_animate = false
 
 local opt = vim.opt
 opt.relativenumber = false
+opt.clipboard = ""

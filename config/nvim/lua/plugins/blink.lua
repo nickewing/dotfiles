@@ -15,15 +15,15 @@ return {
         "ripgrep",
       },
       providers = {
+        ripgrep = {
+          module = "blink-ripgrep",
+          name = "Ripgrep",
+        },
+
         -- Show Buffer completions with LSP
         -- See: https://cmp.saghen.dev/configuration/sources.html#show-buffer-completions-with-lsp
         -- defaults to `{ 'buffer' }`
         lsp = { fallbacks = {} },
-
-        ripgrep = {
-          module = "blink-ripgrep",
-          name = "Ripgrep",
-        }
       },
     },
 

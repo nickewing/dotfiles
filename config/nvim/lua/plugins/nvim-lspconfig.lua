@@ -3,6 +3,16 @@ return {
   opts = {
     inlay_hints = { enabled = false },
     servers = {
+      vtsls = {
+        settings = {
+          typescript = {
+            format = {
+              indentStyle = 1,
+              insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
+            },
+          },
+        },
+      },
       rubocop = {
         enabled = false,
       },
