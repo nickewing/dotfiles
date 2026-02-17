@@ -13,8 +13,8 @@ brew "terminal-notifier"
 brew "nvim"
 brew "pwgen"
 brew "watch"
+brew "direnv"
 
-tap "homebrew/cask"
 cask "1password"
 cask "hammerspoon"
 cask "slack"
@@ -23,14 +23,10 @@ cask "iterm2"
 cask "alfred"
 cask "brave-browser"
 cask "firefox"
-cask "istat-menus"
+cask "istat-menus@6"
 cask "yt-music"
-cask "vimr"
+cask "neovide-app"
 cask "soundsource"
-# cask "synology-note-station-client" # Did not work on last attempt
-# cask "synology-drive" # Did not work on last attempt
-cask "nordvpn"
-cask "libreoffice"
 cask "standard-notes"
 
 cask "aldente" # Battery charge limiter
@@ -38,11 +34,7 @@ cask "bartender" # Menu bar manager
 # cask "bettermouse"
 # cask "caffeine"
 
-tap "homebrew/cask-fonts"
-# A nerd font is required for vim-devicons.  Set font in VimR
 cask "font-meslo-lg-nerd-font"
 cask "font-fira-code-nerd-font"
 
-# tap "homebrew/cask-drivers"
-# cask "logitech-options"
-# cask "logitech-camera-settings"
+cask "logi-options+"

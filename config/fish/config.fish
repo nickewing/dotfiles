@@ -10,6 +10,7 @@ fish_hybrid_key_bindings
 # The argument specifies the initial mode (insert, "default" or visual).
 # fish_vi_key_bindings --no-erase insert
 
-
 set -Ux EDITOR nvim
 set -Ux RIPGREP_CONFIG_PATH $HOME/.ripgreprc
+
+set -U fish_user_paths ~/.local/bin $fish_user_paths

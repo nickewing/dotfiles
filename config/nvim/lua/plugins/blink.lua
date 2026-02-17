@@ -1,7 +1,7 @@
 return {
   "saghen/blink.cmp",
   dependencies = {
-    "mikavilpas/blink-ripgrep.nvim"
+    "mikavilpas/blink-ripgrep.nvim",
   },
   event = "VeryLazy",
   opts = {
