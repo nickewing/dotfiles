@@ -1,9 +1,0 @@
-[submodule "vendor/oh-my-zsh"]
-	path = vendor/oh-my-zsh
-	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule "vendor/vim/vundle"]
-	path = vendor/vim/vundle
-	url = git@github.com:VundleVim/Vundle.vim.git
-[submodule "vendor/zsh-defer"]
-	path = vendor/zsh-defer
-	url = https://github.com/romkatv/zsh-defer.git
