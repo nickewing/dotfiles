@@ -1,0 +1,4 @@
+[global]
+hide_env_diff = true
+# disable_stdin = true
+# log_filter="^$"

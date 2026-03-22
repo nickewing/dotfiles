@@ -1,7 +1,5 @@
-local ui  = require('toggleterm.ui')
-local Terminal  = require('toggleterm.terminal').Terminal
-
-local rails_test_command_prefix = "bin/rails test -v "
+local ui = require("toggleterm.ui")
+local Terminal = require("toggleterm.terminal").Terminal
 
 local rails_term
 local rails_test_term
@@ -9,6 +7,43 @@ local last_run = ""
 
 local function new_shell_term()
   return Terminal:new({ cmd = "$SHELL", hidden = true })
+end
+
+-- Returns the name of the child directory containing the Rails root,
+-- or nil if the current directory is itself the Rails root.
+local function rails_root_subdir()
+  local cwd = vim.fn.getcwd()
+  if vim.fn.filereadable(cwd .. "/config/application.rb") == 1 then
+    return nil
+  end
+  local hits = vim.fn.glob(cwd .. "/*/config/application.rb", false, true)
+  for _, hit in ipairs(hits) do
+    local subdir = vim.fn.fnamemodify(hit, ":h:h")
+    if vim.fn.getftype(subdir) ~= "link" then
+      return vim.fn.fnamemodify(subdir, ":t")
+    end
+  end
+  return nil
+end
+
+local function rails_cmd_prefix()
+  local subdir = rails_root_subdir()
+  if subdir then
+    return "cd " .. subdir .. "; source .envrc; bin/rails"
+  end
+  return "bin/rails"
+end
+
+local function current_file()
+  local path = vim.fn.expand("%")
+  local subdir = rails_root_subdir()
+  if subdir then
+    local prefix = subdir .. "/"
+    if path:sub(1, #prefix) == prefix then
+      path = path:sub(#prefix + 1)
+    end
+  end
+  return path
 end
 
 local function close_term(term)
@@ -33,16 +68,17 @@ local function run_test(test_command)
   end
 
   rails_test_term:open()
-  rails_test_term:send(test_command, true)
+  local cmd = rails_root_subdir() and (test_command .. "; cd -") or test_command
+  rails_test_term:send(cmd, true)
 end
 
 local function run_test_file()
-  local test_command = rails_test_command_prefix .. vim.fn.expand("%")
+  local test_command = rails_cmd_prefix() .. " test -v " .. current_file()
   run_test(test_command)
 end
 
 local function run_test_line()
-  local test_command = rails_test_command_prefix .. vim.fn.expand("%") .. ":" .. vim.fn.line(".")
+  local test_command = rails_cmd_prefix() .. " test -v " .. current_file() .. ":" .. vim.fn.line(".")
   run_test(test_command)
 end
 
@@ -62,7 +98,7 @@ local function run_rails_command(command)
   end
 
   rails_term:toggle()
-  rails_term:send(command, true)
+  rails_term:send(rails_cmd_prefix() .. " " .. command, true)
 end
 
 local function close_all_rails_terms()
@@ -71,7 +107,7 @@ local function close_all_rails_terms()
 end
 
 vim.api.nvim_create_user_command("R", function(args)
-  run_rails_command("bin/rails " .. args.args)
+  run_rails_command(args.args)
 end, { desc = "Run rails command", nargs = "*" })
 
 vim.keymap.set("n", "<leader>rf", run_test_file, { desc = "Run Rails test file" })

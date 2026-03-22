@@ -10,5 +10,5 @@ pattern[".*.env.sample"] = "sh"
 
 vim.filetype.add({
   extension = extension,
-  pattern = pattern
+  pattern = pattern,
 })

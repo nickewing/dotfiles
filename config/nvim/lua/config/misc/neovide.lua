@@ -1,4 +1,4 @@
-if vim.g.neovide then
+if vim.g.neovide or os.getenv("DEVCONTAINER") then
   vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
   vim.keymap.set("v", "<D-c>", '"+y') -- Copy
   vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
@@ -73,4 +73,9 @@ if vim.g.neovide then
   vim.g.neovide_scroll_animation_length = 0
 
   vim.g.neovide_input_macos_option_key_is_meta = "both"
+
+  vim.g.neovide_padding_top = 6
+  vim.g.neovide_padding_bottom = 0
+  vim.g.neovide_padding_right = 0
+  vim.g.neovide_padding_left = 0
 end

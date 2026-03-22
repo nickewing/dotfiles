@@ -70,6 +70,9 @@ sudo defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 echo "Change scroll direction"
 defaults write -g com.apple.swipescrolldirection -bool FALSE
 
+echo "Always show scrollbars"
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
 echo "Setup mission control bottom right hot corner"
 defaults write com.apple.dock wvous-br-corner -int 2
 defaults write com.apple.dock wvous-br-modifier -int 0
@@ -87,6 +90,9 @@ chflags nohidden ~/Library
 echo "Use list view in all Finder windows by default"
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+echo "Re-enable font smoothing"
+defaults write -g CGFontRenderingFontSmoothingDisabled -bool FALSE
 
 echo "Kill affected applications"
 for app in Finder Dock SystemUIServer; do killall "$app" >/dev/null 2>&1; done
